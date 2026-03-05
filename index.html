@@ -85,12 +85,10 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);display:flex
 .uitem.on{background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.12);}
 .uav{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700;flex-shrink:0;position:relative;}
 .odot{position:absolute;bottom:0;right:0;width:9px;height:9px;border-radius:50%;background:var(--green);border:2px solid var(--s1);}
-.bot-badge{position:absolute;bottom:0;right:0;width:14px;height:14px;border-radius:50%;background:var(--purple);border:2px solid var(--s1);display:flex;align-items:center;justify-content:center;font-size:.45rem;color:#fff;font-weight:700;}
 .uinfo{flex:1;min-width:0;}
 .uname{font-size:.83rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .umeta{font-size:.7rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:1px;}
 .unread-pill{min-width:18px;height:18px;border-radius:9px;background:var(--orange);color:#fff;font-size:.62rem;font-weight:700;display:flex;align-items:center;justify-content:center;padding:0 4px;}
-.bot-tag{font-size:.6rem;background:rgba(139,92,246,.15);color:#a78bfa;border:1px solid rgba(139,92,246,.2);border-radius:4px;padding:1px 5px;font-weight:600;margin-left:4px;}
 
 /* VIEWS */
 .view{display:none;flex-direction:column;height:100%;overflow:hidden;}
@@ -261,9 +259,9 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);display:flex
     </div>
     <div class="feat-row">
       <div class="feat"><div class="ico">⚡</div><h4>Real Users</h4><p>Chat with real people online now</p></div>
-      <div class="feat"><div class="ico">🤖</div><h4>Smart Bots</h4><p>Chatbots active when no one is online</p></div>
-      <div class="feat"><div class="ico">🔔</div><h4>Notifications</h4><p>Sound alert for every new message</p></div>
+      <div class="feat"><div class="ico">🔔</div><h4>Smart Alerts</h4><p>Bell only rings when someone new messages you</p></div>
       <div class="feat"><div class="ico">👥</div><h4>Group Chat</h4><p>Create & chat in city groups</p></div>
+      <div class="feat"><div class="ico">🔒</div><h4>Session Safe</h4><p>Stay online even when switching apps</p></div>
     </div>
   </div>
 </div>
@@ -316,7 +314,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);display:flex
         <div id="no-chat" class="no-chat">
           <div class="big">👋</div>
           <h3>Welcome to ChatZone!</h3>
-          <p>Pick someone from the list to start chatting, or try one of the <strong>🤖 bots</strong> if no one is online yet!</p>
+          <p>Pick someone from the list to start chatting, or use <strong>Find</strong> to search by your city.</p>
         </div>
         <div id="chat-panel" style="display:none;flex-direction:column;height:100%;">
           <div class="chat-head">
@@ -728,14 +726,12 @@ window.joinChat=async()=>{
     db=getDatabase(app);
     const uid=Date.now().toString(36)+Math.random().toString(36).slice(2,6);
     ME={uid,name:un,gender:selGender,country,state,city,age,color:colorFor(uid)};
-    const pr=ref(db,'presence/'+uid);
-    await set(pr,{...ME,online:true,ts:serverTimestamp()});
-    onDisconnect(pr).remove();
+    await connectAndRegister();
+    // Save session so switching apps doesn't kick user out
+    sessionStorage.setItem('czMe', JSON.stringify(ME));
     document.getElementById('landing').style.display='none';
     document.getElementById('app').classList.add('show');
-    const av=document.getElementById('me-av');
-    av.textContent=un[0].toUpperCase(); av.style.cssText=`background:${ME.color}22;color:${ME.color}`;
-    document.getElementById('me-nm').textContent=un;
+    applyMeChip();
     initApp();
   }catch(err){
     btn.disabled=false; btn.textContent='🚀 Start Chatting Free';
@@ -744,6 +740,19 @@ window.joinChat=async()=>{
   }
 };
 
+async function connectAndRegister(){
+  const pr=ref(db,'presence/'+ME.uid);
+  await set(pr,{...ME,online:true,ts:serverTimestamp()});
+  onDisconnect(pr).remove();
+}
+
+function applyMeChip(){
+  const av=document.getElementById('me-av');
+  av.textContent=ME.name[0].toUpperCase();
+  av.style.cssText=`background:${ME.color}22;color:${ME.color}`;
+  document.getElementById('me-nm').textContent=ME.name;
+}
+
 // ── INIT ──
 function initApp(){
   initEmoji('epick','minp');
@@ -751,9 +760,63 @@ function initApp(){
   upStates('g');
   renderGroups();
   listenOnline();
-  setupEnterKeys(); // ← ENTER KEY FIX
+  setupEnterKeys();
+  setupSessionKeepAlive(); // FIX 3: keeps presence alive when switching apps
   document.addEventListener('click',()=>ensureAudio(),{once:true});
 }
+
+// ════════════════════════════
+//  FIX 3: SESSION PERSISTENCE
+//  - Saves session to sessionStorage (survives app-switching, NOT tab close)
+//  - Re-registers presence when tab becomes visible again after being hidden
+//  - Periodic heartbeat every 25s to prevent Firebase from dropping presence
+// ════════════════════════════
+function setupSessionKeepAlive(){
+  // Re-write presence every time tab becomes visible (e.g. coming back from another app)
+  document.addEventListener('visibilitychange', async ()=>{
+    if(document.visibilityState==='visible' && ME && db){
+      try{
+        const pr=ref(db,'presence/'+ME.uid);
+        await set(pr,{...ME,online:true,ts:serverTimestamp()});
+        onDisconnect(pr).remove();
+      }catch(e){ console.warn('Presence refresh failed',e); }
+    }
+  });
+  // Heartbeat every 25 seconds to keep presence node fresh
+  setInterval(async ()=>{
+    if(ME && db && document.visibilityState==='visible'){
+      try{
+        await set(ref(db,'presence/'+ME.uid),{...ME,online:true,ts:serverTimestamp()});
+      }catch(e){}
+    }
+  }, 25000);
+}
+
+// ════════════════════════════
+//  Session restore on page load
+//  If user previously joined and just reloaded/returned, skip landing
+// ════════════════════════════
+async function tryRestoreSession(){
+  const saved=sessionStorage.getItem('czMe');
+  if(!saved) return false;
+  try{
+    ME=JSON.parse(saved);
+    const app=initializeApp(FIREBASE_CONFIG);
+    db=getDatabase(app);
+    await connectAndRegister();
+    document.getElementById('landing').style.display='none';
+    document.getElementById('app').classList.add('show');
+    applyMeChip();
+    initApp();
+    return true;
+  }catch(e){
+    sessionStorage.removeItem('czMe');
+    return false;
+  }
+}
+
+// Try session restore immediately
+tryRestoreSession();
 
 // ════════════════════════════
 //  ✅ ENTER KEY FIX
@@ -817,20 +880,14 @@ function renderSidebar(filter=null){
     el.appendChild(d);
   });
 
-  // Divider if both exist
-  if(filtered.length && bots.length){
-    const div=document.createElement('div');
-    div.style.cssText='font-size:.68rem;color:var(--muted);padding:8px 10px 4px;font-weight:600;letter-spacing:.4px;text-transform:uppercase;';
-    div.textContent='🤖 Chatbots';
-    el.appendChild(div);
-  }
+  // Divider removed — bots blend in with real users, no labels
 
-  // Bots
+  // Bots rendered just like real users
   bots.forEach(b=>{
     const unread=unreadCounts[b.uid]||0;
     const d=document.createElement('div');
-    d.className='uitem'+(activeUID===b.uid?' on':'');
-    d.innerHTML=`<div class="uav" style="background:${b.color}22;color:${b.color}">${b.name[0].toUpperCase()}<span class="bot-badge">🤖</span></div><div class="uinfo"><div class="uname">${esc(b.name)}<span class="bot-tag">BOT</span></div><div class="umeta">${flag(b.country)} ${esc(b.city)} · Always online</div></div>${unread?`<div class="unread-pill">${unread}</div>`:''}`;
+    d.className='uitem'+(activeBotUID===b.uid?' on':'');
+    d.innerHTML=`<div class="uav" style="background:${b.color}22;color:${b.color}">${b.name[0].toUpperCase()}<span class="odot"></span></div><div class="uinfo"><div class="uname">${esc(b.name)}</div><div class="umeta">${flag(b.country)} ${esc(b.city)}, ${esc(b.state)}</div></div>${unread?`<div class="unread-pill">${unread}</div>`:''}`;
     d.onclick=()=>openBotChat(b);
     el.appendChild(d);
   });
@@ -842,21 +899,20 @@ window.filterSB=()=>renderSidebar();
 function openChat(user){
   activeBotUID=null; activeUID=user.uid; unreadCounts[user.uid]=0;
   showChatPanel(user.name, user.uid, user.color,
-    `${flag(user.country)} ${esc(user.city)}, ${esc(user.state)} &bull; ${user.gender==='male'?'👨':'👩'} ${user.age}`,
-    false);
+    `${flag(user.country)} ${esc(user.city)}, ${esc(user.state)} &bull; ${user.gender==='male'?'👨':'👩'} ${user.age}`);
   document.getElementById('msgs').innerHTML='<div class="sys-msg"><span>Conversation start 👋</span></div>';
   loadMessages(user.uid);
   renderSidebar();
   sv('chat',document.getElementById('tab-chat'));
 }
 
-function showChatPanel(name, uid, color, meta, isBot){
+function showChatPanel(name, uid, color, meta){
   document.getElementById('no-chat').style.display='none';
   const cp=document.getElementById('chat-panel'); cp.style.display='flex';
   const av=document.getElementById('cp-av');
   av.textContent=name[0].toUpperCase();
   av.style.cssText=`background:${color}22;color:${color};width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.82rem;font-weight:700;flex-shrink:0;`;
-  document.getElementById('cp-nm').innerHTML=esc(name)+(isBot?' <span class="bot-tag">BOT</span>':'');
+  document.getElementById('cp-nm').innerHTML=esc(name);
   document.getElementById('cp-meta').innerHTML=meta;
   document.getElementById('typing-indicator').style.display='none';
 }
@@ -890,13 +946,15 @@ function loadMessages(uid){
       if(all){
         const last=all[Object.keys(all).pop()];
         if(last.from!==ME.uid){
-          playTing();
+          // Only play sound + show notif when this is NOT the currently open chat
           if(activeUID!==uid){
+            playTing();
             unreadCounts[uid]=(unreadCounts[uid]||0)+1;
             renderSidebar();
             const sender=onlineUsers[uid];
             if(sender) showNotif(sender.name,sender.uid,last.text,()=>openChat(sender));
           }
+          // If it IS the active chat, just scroll silently — no sound
         }
       }
     }
@@ -908,9 +966,10 @@ function loadMessages(uid){
 // ── BOT CHAT ──
 function openBotChat(bot){
   activeBotUID=bot.uid; activeUID=null; unreadCounts[bot.uid]=0;
+  // Bots look like real users — no BOT label shown
   showChatPanel(bot.name, bot.uid, bot.color,
-    `${flag(bot.country)} ${esc(bot.city)}, ${esc(bot.state)} &bull; ${bot.gender==='male'?'👨':'👩'} ${bot.age} &bull; Always online`,
-    true);
+    `${flag(bot.country)} ${esc(bot.city)}, ${esc(bot.state)} &bull; ${bot.gender==='male'?'👨':'👩'} ${bot.age}`,
+    false);
   // Load existing bot conversation
   const el=document.getElementById('msgs');
   el.innerHTML='<div class="sys-msg"><span>Chat started with '+esc(bot.name)+' 👋</span></div>';
@@ -945,7 +1004,7 @@ function scheduleBotReply(bot, userMsg, isGreeting=false){
     botConversations[bot.uid].push(m);
     const el=document.getElementById('msgs');
     appendMsg(m, el, true);
-    playTing();
+    // No sound — user is actively looking at this bot chat
   }, delay);
 }
 
@@ -1014,7 +1073,7 @@ window.doSearch=()=>{
     const isB=!!u.isBot;
     const col=colorFor(u.uid);
     const onclick=isB?`openBotChatFS('${u.uid}')`:`openChatFS('${u.uid}')`;
-    return `<div class="rc" onclick="${onclick}"><div class="bav" style="background:${col}22;color:${col};position:relative;">${u.name[0]}<span style="position:absolute;bottom:2px;right:2px;width:9px;height:9px;border-radius:50%;background:${isB?'var(--purple)':'var(--green)'};border:2px solid var(--s1)"></span></div><h4>${esc(u.name)}${isB?' <span class="bot-tag">BOT</span>':''}</h4><div class="rm">${flag(u.country)} ${esc(u.city)}, ${esc(u.state)}</div><div class="rm">${u.gender==='male'?'👨':'👩'} ${u.age}</div><span class="tag ${TAGS[u.country]||'t-in'}">${u.country}</span><span class="rl">💬 Start Chat</span></div>`;
+    return `<div class="rc" onclick="${onclick}"><div class="bav" style="background:${col}22;color:${col};position:relative;">${u.name[0]}<span style="position:absolute;bottom:2px;right:2px;width:9px;height:9px;border-radius:50%;background:var(--green);border:2px solid var(--s1)"></span></div><h4>${esc(u.name)}</h4><div class="rm">${flag(u.country)} ${esc(u.city)}, ${esc(u.state)}</div><div class="rm">${u.gender==='male'?'👨':'👩'} ${u.age}</div><span class="tag ${TAGS[u.country]||'t-in'}">${u.country}</span><span class="rl">💬 Start Chat</span></div>`;
   }).join('')+'</div>';
 };
 window.openChatFS=(uid)=>{ const u=onlineUsers[uid]; if(u) openChat(u); };
