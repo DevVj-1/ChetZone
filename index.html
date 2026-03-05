@@ -11,114 +11,59 @@
   --border:#1e2d45; --border2:#243349;
   --accent:#3b82f6; --accent-glow:rgba(59,130,246,.15);
   --green:#22c55e; --orange:#f97316; --pink:#ec4899; --purple:#8b5cf6;
-  --text:#f0f4ff; --muted:#5a6a85; --muted2:#3d4f6b;
+  --text:#f0f4ff; --muted:#5a6a85;
   --font:'Plus Jakarta Sans',sans-serif;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 html,body{height:100%;overflow:hidden;}
 body{font-family:var(--font);background:var(--bg);color:var(--text);display:flex;flex-direction:column;}
-
-/* ── SCROLLBAR ── */
 ::-webkit-scrollbar{width:4px;height:4px;}
 ::-webkit-scrollbar-track{background:transparent;}
 ::-webkit-scrollbar-thumb{background:var(--border2);border-radius:99px;}
 
-/* ══════════════════════════════════════════
-   LANDING
-══════════════════════════════════════════ */
-#landing{
-  position:fixed;inset:0;z-index:1000;
-  display:flex;align-items:center;justify-content:center;
-  background:var(--bg);padding:16px;overflow-y:auto;
-}
-#landing::before{
-  content:'';position:fixed;inset:0;
-  background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(59,130,246,.12),transparent);
-  pointer-events:none;
-}
-.land-inner{width:100%;max-width:440px;position:relative;z-index:1;}
-.land-logo{text-align:center;margin-bottom:32px;}
-.land-logo h1{
-  font-size:clamp(2.2rem,7vw,3.2rem);font-weight:800;letter-spacing:-1.5px;
-  background:linear-gradient(135deg,#60a5fa 0%,#818cf8 50%,#c084fc 100%);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-}
-.land-logo p{color:var(--muted);font-size:.9rem;margin-top:6px;font-weight:400;}
-.flags{display:flex;justify-content:center;gap:8px;margin-bottom:28px;flex-wrap:wrap;}
-.flag-chip{
-  padding:5px 14px;border-radius:20px;font-size:.75rem;font-weight:600;
-  background:var(--s2);border:1px solid var(--border);color:var(--muted);
-  transition:.2s;
-}
-.flag-chip:hover{border-color:var(--accent);color:var(--text);}
-
-.card{
-  background:var(--s1);border:1px solid var(--border);border-radius:18px;
-  padding:28px;box-shadow:0 0 80px rgba(59,130,246,.05),0 24px 64px rgba(0,0,0,.5);
-}
-.card h2{font-size:1.05rem;font-weight:700;margin-bottom:22px;color:var(--text);}
-.field{margin-bottom:14px;}
-.field label{display:block;font-size:.72rem;color:var(--muted);font-weight:600;letter-spacing:.4px;text-transform:uppercase;margin-bottom:6px;}
-.field input,.field select{
-  width:100%;padding:11px 14px;background:var(--s2);border:1px solid var(--border);
-  border-radius:10px;color:var(--text);font-family:var(--font);font-size:.88rem;outline:none;transition:.2s;
-}
+/* LANDING */
+#landing{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;background:var(--bg);padding:16px;overflow-y:auto;}
+#landing::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(59,130,246,.12),transparent);pointer-events:none;}
+.land-inner{width:100%;max-width:440px;position:relative;z-index:1;padding:20px 0;}
+.land-logo{text-align:center;margin-bottom:28px;}
+.land-logo h1{font-size:clamp(2rem,7vw,3rem);font-weight:800;letter-spacing:-1.5px;background:linear-gradient(135deg,#60a5fa 0%,#818cf8 50%,#c084fc 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.land-logo p{color:var(--muted);font-size:.88rem;margin-top:6px;}
+.flags{display:flex;justify-content:center;gap:8px;margin-bottom:24px;flex-wrap:wrap;}
+.flag-chip{padding:5px 14px;border-radius:20px;font-size:.75rem;font-weight:600;background:var(--s2);border:1px solid var(--border);color:var(--muted);}
+.card{background:var(--s1);border:1px solid var(--border);border-radius:18px;padding:24px;box-shadow:0 0 80px rgba(59,130,246,.05),0 24px 64px rgba(0,0,0,.5);}
+.card h2{font-size:1.05rem;font-weight:700;margin-bottom:20px;}
+.field{margin-bottom:12px;}
+.field label{display:block;font-size:.72rem;color:var(--muted);font-weight:600;letter-spacing:.4px;text-transform:uppercase;margin-bottom:5px;}
+.field input,.field select{width:100%;padding:10px 13px;background:var(--s2);border:1px solid var(--border);border-radius:10px;color:var(--text);font-family:var(--font);font-size:.87rem;outline:none;transition:.2s;}
 .field input:focus,.field select:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow);}
 .field select option{background:var(--s2);}
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
 .gender-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
-.g-btn{
-  padding:10px 8px;border-radius:10px;border:1px solid var(--border);
-  background:var(--s2);color:var(--muted);font-family:var(--font);
-  font-size:.85rem;font-weight:500;cursor:pointer;transition:.2s;
-  display:flex;align-items:center;justify-content:center;gap:6px;
-}
+.g-btn{padding:10px 8px;border-radius:10px;border:1px solid var(--border);background:var(--s2);color:var(--muted);font-family:var(--font);font-size:.85rem;font-weight:500;cursor:pointer;transition:.2s;display:flex;align-items:center;justify-content:center;gap:6px;}
 .g-btn.on{border-color:var(--accent);color:#93c5fd;background:rgba(59,130,246,.08);}
-
-.join-btn{
-  width:100%;padding:13px;margin-top:18px;
-  background:linear-gradient(135deg,#3b82f6,#8b5cf6);
-  border:none;border-radius:12px;color:#fff;
-  font-family:var(--font);font-size:.95rem;font-weight:700;
-  cursor:pointer;letter-spacing:.3px;transition:.25s;position:relative;overflow:hidden;
-}
-.join-btn::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,transparent,rgba(255,255,255,.1),transparent);transform:translateX(-100%);transition:.4s;}
-.join-btn:hover::after{transform:translateX(100%);}
+.join-btn{width:100%;padding:13px;margin-top:16px;background:linear-gradient(135deg,#3b82f6,#8b5cf6);border:none;border-radius:12px;color:#fff;font-family:var(--font);font-size:.95rem;font-weight:700;cursor:pointer;transition:.25s;}
 .join-btn:hover{transform:translateY(-2px);box-shadow:0 10px 35px rgba(59,130,246,.35);}
-.join-btn:active{transform:translateY(0);}
 .join-btn:disabled{opacity:.6;cursor:not-allowed;transform:none;}
-
-.feat-row{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:24px;}
+.feat-row{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:20px;}
 .feat{background:var(--s1);border:1px solid var(--border);border-radius:12px;padding:14px;text-align:center;}
 .feat .ico{font-size:1.5rem;margin-bottom:6px;}
 .feat h4{font-size:.78rem;font-weight:700;margin-bottom:2px;}
 .feat p{font-size:.7rem;color:var(--muted);line-height:1.4;}
 
-/* ══════════════════════════════════════════
-   APP SHELL
-══════════════════════════════════════════ */
+/* APP */
 #app{flex:1;display:none;flex-direction:column;height:100%;overflow:hidden;}
 #app.show{display:flex;}
 
-/* TOP BAR */
-.topbar{
-  height:52px;background:var(--s1);border-bottom:1px solid var(--border);
-  display:flex;align-items:center;padding:0 12px;gap:10px;flex-shrink:0;z-index:50;
-}
-.topbar .tlogo{font-weight:800;font-size:1rem;background:linear-gradient(135deg,#60a5fa,#c084fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;white-space:nowrap;}
+/* TOPBAR */
+.topbar{height:52px;background:var(--s1);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 12px;gap:10px;flex-shrink:0;z-index:50;}
+.tlogo{font-weight:800;font-size:1rem;background:linear-gradient(135deg,#60a5fa,#c084fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;white-space:nowrap;}
 .tab-bar{display:flex;gap:2px;flex:1;justify-content:center;}
-.tab{
-  padding:6px 12px;border-radius:8px;border:none;background:transparent;
-  color:var(--muted);font-family:var(--font);font-size:.8rem;font-weight:600;
-  cursor:pointer;transition:.15s;white-space:nowrap;
-}
+.tab{padding:6px 12px;border-radius:8px;border:none;background:transparent;color:var(--muted);font-family:var(--font);font-size:.8rem;font-weight:600;cursor:pointer;transition:.15s;white-space:nowrap;position:relative;}
 .tab:hover,.tab.on{background:var(--s2);color:var(--text);}
 .tab.on{color:#93c5fd;}
-.me-chip{
-  display:flex;align-items:center;gap:7px;background:var(--s2);
-  padding:4px 10px 4px 4px;border-radius:20px;flex-shrink:0;
-}
+.tab .nbadge{position:absolute;top:3px;right:3px;width:7px;height:7px;border-radius:50%;background:var(--orange);display:none;}
+.tab .nbadge.show{display:block;}
+.me-chip{display:flex;align-items:center;gap:7px;background:var(--s2);padding:4px 10px 4px 4px;border-radius:20px;flex-shrink:0;}
 .me-chip .av{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;}
 .me-chip span{font-size:.78rem;font-weight:600;max-width:90px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 .online-dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:blink 2s infinite;}
@@ -126,26 +71,20 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);display:flex
 
 /* LAYOUT */
 .layout{flex:1;display:grid;grid-template-columns:270px 1fr;overflow:hidden;}
-@media(max-width:640px){.layout{grid-template-columns:1fr;}.sidebar{display:none;}.sidebar.mob{display:flex;}}
+@media(max-width:640px){.layout{grid-template-columns:1fr;}.sidebar{display:none;}}
 
 /* SIDEBAR */
-.sidebar{
-  border-right:1px solid var(--border);display:flex;flex-direction:column;
-  background:var(--s1);overflow:hidden;
-}
+.sidebar{border-right:1px solid var(--border);display:flex;flex-direction:column;background:var(--s1);overflow:hidden;}
 .sb-head{padding:12px;border-bottom:1px solid var(--border);flex-shrink:0;}
 .sb-head h3{font-size:.82rem;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:6px;}
-.sb-head h3 .cnt{font-size:.7rem;background:var(--s3);padding:2px 7px;border-radius:10px;color:var(--muted);font-weight:500;}
+.cnt{font-size:.7rem;background:var(--s3);padding:2px 7px;border-radius:10px;color:var(--muted);font-weight:500;}
 .srch{position:relative;}
 .srch input{padding-left:30px;font-size:.8rem;}
 .srch::before{content:'⌕';position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:1rem;pointer-events:none;}
 .sf-row{display:flex;gap:6px;margin-top:7px;}
 .sf-row select{flex:1;padding:6px 8px;font-size:.74rem;}
 .ulist{flex:1;overflow-y:auto;padding:6px;}
-.uitem{
-  display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:10px;
-  cursor:pointer;transition:.15s;margin-bottom:2px;position:relative;
-}
+.uitem{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:10px;cursor:pointer;transition:.15s;margin-bottom:2px;}
 .uitem:hover{background:var(--s2);}
 .uitem.on{background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.12);}
 .uav{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700;flex-shrink:0;position:relative;}
@@ -153,33 +92,26 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);display:flex
 .uinfo{flex:1;min-width:0;}
 .uname{font-size:.83rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .umeta{font-size:.7rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:1px;}
-.ubadge{
-  min-width:18px;height:18px;border-radius:9px;background:var(--accent);
-  color:#fff;font-size:.62rem;font-weight:700;display:flex;align-items:center;justify-content:center;padding:0 4px;
-}
+.unread-pill{min-width:18px;height:18px;border-radius:9px;background:var(--orange);color:#fff;font-size:.62rem;font-weight:700;display:flex;align-items:center;justify-content:center;padding:0 4px;}
 
 /* VIEWS */
 .view{display:none;flex-direction:column;height:100%;overflow:hidden;}
 .view.on{display:flex;}
 
-/* CHAT VIEW */
-.chat-wrap{flex:1;display:flex;flex-direction:column;overflow:hidden;}
+/* BACK BUTTON */
+.back-btn{display:flex;align-items:center;gap:5px;padding:6px 12px;background:var(--s2);border:1px solid var(--border);border-radius:8px;color:var(--muted);font-family:var(--font);font-size:.78rem;font-weight:600;cursor:pointer;transition:.15s;flex-shrink:0;white-space:nowrap;}
+.back-btn:hover{border-color:var(--accent);color:var(--text);}
+
+/* CHAT */
 .no-chat{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--muted);text-align:center;padding:32px;}
 .no-chat .big{font-size:3.5rem;margin-bottom:14px;}
 .no-chat h3{font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:6px;}
 .no-chat p{font-size:.83rem;line-height:1.7;max-width:320px;}
-.chat-head{
-  padding:10px 14px;border-bottom:1px solid var(--border);
-  background:var(--s1);display:flex;align-items:center;gap:10px;flex-shrink:0;
-}
-.chat-head .chi{flex:1;}
-.chat-head .chi h3{font-size:.9rem;font-weight:700;}
-.chat-head .chi p{font-size:.7rem;color:var(--muted);margin-top:1px;}
-.hbtn{
-  width:32px;height:32px;border-radius:8px;border:1px solid var(--border);
-  background:var(--s2);cursor:pointer;display:flex;align-items:center;justify-content:center;
-  font-size:.85rem;transition:.15s;
-}
+.chat-head{padding:10px 12px;border-bottom:1px solid var(--border);background:var(--s1);display:flex;align-items:center;gap:8px;flex-shrink:0;}
+.chat-head .chi{flex:1;min-width:0;}
+.chat-head .chi h3{font-size:.9rem;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.chat-head .chi p{font-size:.7rem;color:var(--muted);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.hbtn{width:32px;height:32px;border-radius:8px;border:1px solid var(--border);background:var(--s2);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.85rem;transition:.15s;}
 .hbtn:hover{border-color:var(--accent);}
 .msgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px;}
 .msg-row{display:flex;gap:8px;animation:popIn .25s ease;}
@@ -189,54 +121,37 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);display:flex
 .mc{max-width:68%;}
 .msender{font-size:.67rem;color:var(--muted);margin-bottom:3px;font-weight:500;}
 .msg-row.me .msender{text-align:right;}
-.mb{
-  padding:9px 13px;border-radius:14px;font-size:.855rem;line-height:1.55;word-break:break-word;
-}
+.mb-wrap{position:relative;}
+.mb{padding:9px 13px;border-radius:14px;font-size:.855rem;line-height:1.55;word-break:break-word;}
 .msg-row:not(.me) .mb{background:var(--s2);border:1px solid var(--border);border-bottom-left-radius:3px;}
 .msg-row.me .mb{background:linear-gradient(135deg,rgba(59,130,246,.25),rgba(139,92,246,.2));border:1px solid rgba(59,130,246,.2);border-bottom-right-radius:3px;}
+.copy-btn{position:absolute;top:4px;right:6px;background:var(--s3);border:1px solid var(--border);border-radius:5px;color:var(--muted);font-size:.6rem;padding:2px 6px;cursor:pointer;opacity:0;transition:.15s;font-family:var(--font);}
+.mb-wrap:hover .copy-btn{opacity:1;}
+.copy-btn:hover{color:var(--accent);}
 .mtime{font-size:.62rem;color:var(--muted);margin-top:3px;}
 .msg-row.me .mtime{text-align:right;}
 .sys-msg{text-align:center;padding:2px 0;}
 .sys-msg span{background:var(--s2);border:1px solid var(--border);border-radius:16px;padding:3px 12px;font-size:.68rem;color:var(--muted);}
-.typing-indicator{display:flex;align-items:center;gap:6px;padding:6px 14px;font-size:.72rem;color:var(--muted);}
-.typing-dots{display:flex;gap:3px;}
-.typing-dots span{width:5px;height:5px;border-radius:50%;background:var(--muted);animation:tdot 1.2s infinite;}
-.typing-dots span:nth-child(2){animation-delay:.2s;}
-.typing-dots span:nth-child(3){animation-delay:.4s;}
-@keyframes tdot{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-5px)}}
 
-.inp-area{padding:10px 12px;border-top:1px solid var(--border);background:var(--s1);position:relative;}
-.ep{
-  position:absolute;bottom:68px;left:12px;
-  background:var(--s1);border:1px solid var(--border);border-radius:14px;
-  padding:10px;display:grid;grid-template-columns:repeat(8,1fr);gap:3px;
-  z-index:100;box-shadow:0 8px 40px rgba(0,0,0,.5);
-}
+/* INPUT */
+.inp-area{padding:10px 12px;border-top:1px solid var(--border);background:var(--s1);position:relative;flex-shrink:0;}
+.ep{position:absolute;bottom:68px;left:12px;background:var(--s1);border:1px solid var(--border);border-radius:14px;padding:10px;display:grid;grid-template-columns:repeat(8,1fr);gap:3px;z-index:100;box-shadow:0 8px 40px rgba(0,0,0,.5);}
 .ep.hide{display:none;}
 .ep span{font-size:1.15rem;cursor:pointer;padding:4px;border-radius:6px;text-align:center;transition:.1s;}
 .ep span:hover{background:var(--s2);}
 .irow{display:flex;gap:8px;align-items:center;}
-.iwrap{
-  flex:1;background:var(--s2);border:1px solid var(--border);border-radius:12px;
-  padding:9px 12px;display:flex;align-items:center;gap:8px;transition:.2s;
-}
+.iwrap{flex:1;background:var(--s2);border:1px solid var(--border);border-radius:12px;padding:9px 12px;display:flex;align-items:center;gap:8px;transition:.2s;}
 .iwrap:focus-within{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow);}
 .iwrap input{flex:1;border:none;background:transparent;color:var(--text);font-family:var(--font);font-size:.87rem;outline:none;}
 .ebtn{font-size:1.1rem;cursor:pointer;opacity:.5;transition:.15s;background:none;border:none;line-height:1;}
 .ebtn:hover{opacity:1;}
-.sbtn{
-  width:40px;height:40px;border-radius:11px;flex-shrink:0;
-  background:linear-gradient(135deg,#3b82f6,#8b5cf6);border:none;
-  color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.95rem;
-  transition:.2s;
-}
+.sbtn{width:40px;height:40px;border-radius:11px;flex-shrink:0;background:linear-gradient(135deg,#3b82f6,#8b5cf6);border:none;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.95rem;transition:.2s;}
 .sbtn:hover{transform:scale(1.06);box-shadow:0 4px 20px rgba(59,130,246,.4);}
-.sbtn:disabled{opacity:.5;cursor:not-allowed;transform:none;}
 
-/* SEARCH VIEW */
-.sv{padding:18px;overflow-y:auto;}
+/* SEARCH */
+.sv{padding:18px;overflow-y:auto;height:100%;}
 .sv h2{font-size:1.1rem;font-weight:800;margin-bottom:4px;}
-.sv>p{color:var(--muted);font-size:.82rem;margin-bottom:18px;}
+.sv>p{color:var(--muted);font-size:.82rem;margin-bottom:16px;}
 .sf-card{background:var(--s1);border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:16px;}
 .sf-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;}
 .btn-row{display:flex;gap:8px;margin-top:12px;}
@@ -244,13 +159,9 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);display:flex
 .btn-p{background:linear-gradient(135deg,#3b82f6,#8b5cf6);color:#fff;}
 .btn-p:hover{opacity:.9;transform:translateY(-1px);}
 .btn-s{background:var(--s2);color:var(--text);border:1px solid var(--border);}
-.btn-s:hover{border-color:var(--accent);}
-.rg{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px;}
-.rc{
-  background:var(--s1);border:1px solid var(--border);border-radius:14px;
-  padding:15px;text-align:center;cursor:pointer;transition:.2s;
-}
-.rc:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 8px 30px rgba(59,130,246,.07);}
+.rg{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;}
+.rc{background:var(--s1);border:1px solid var(--border);border-radius:14px;padding:15px;text-align:center;cursor:pointer;transition:.2s;}
+.rc:hover{border-color:var(--accent);transform:translateY(-2px);}
 .rc .bav{width:52px;height:52px;border-radius:50%;margin:0 auto 9px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;font-weight:700;position:relative;}
 .rc h4{font-size:.87rem;font-weight:700;}
 .rc .rm{font-size:.72rem;color:var(--muted);margin-top:3px;}
@@ -261,50 +172,51 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);display:flex
 .t-pk{background:rgba(236,72,153,.1);color:#f472b6;}
 .t-np{background:rgba(139,92,246,.1);color:#a78bfa;}
 
-/* GROUPS VIEW */
-.gv{padding:18px;overflow-y:auto;}
-.gv h2{font-size:1.1rem;font-weight:800;margin-bottom:4px;}
-.gv>p{color:var(--muted);font-size:.82rem;margin-bottom:18px;}
-.gc-card{background:var(--s1);border:1px solid var(--border);border-radius:14px;padding:18px;margin-bottom:18px;}
-.gc-card h3{font-size:.9rem;font-weight:700;margin-bottom:14px;}
+/* GROUPS */
+.gv-list{padding:18px;overflow-y:auto;height:100%;}
+.gv-list h2{font-size:1.1rem;font-weight:800;margin-bottom:4px;}
+.gv-list>p{color:var(--muted);font-size:.82rem;margin-bottom:16px;}
+.gc-card{background:var(--s1);border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:16px;}
+.gc-card h3{font-size:.9rem;font-weight:700;margin-bottom:12px;}
 .gf{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;}
-.gf .sp2{grid-column:span 2;}
-.gl{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;}
+.gl{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;}
 .gcard{background:var(--s1);border:1px solid var(--border);border-radius:14px;padding:15px;transition:.2s;}
 .gcard:hover{border-color:var(--purple);}
 .gi{width:42px;height:42px;border-radius:11px;background:linear-gradient(135deg,var(--purple),var(--pink));display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin-bottom:10px;}
 .gcard h4{font-size:.87rem;font-weight:700;}
 .gcard .gm{font-size:.72rem;color:var(--muted);margin-top:3px;}
-.gjoin{
-  margin-top:10px;width:100%;padding:7px;background:rgba(139,92,246,.1);
-  border:1px solid rgba(139,92,246,.2);border-radius:8px;color:#a78bfa;
-  font-size:.76rem;font-weight:600;cursor:pointer;transition:.15s;font-family:var(--font);
-}
+.gbtn-row{display:flex;gap:6px;margin-top:10px;}
+.gjoin{flex:1;padding:7px 4px;background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.2);border-radius:8px;color:#a78bfa;font-size:.75rem;font-weight:600;cursor:pointer;transition:.15s;font-family:var(--font);}
 .gjoin:hover:not(:disabled){background:rgba(139,92,246,.2);}
-.gjoin:disabled{opacity:.7;cursor:default;}
+.gjoin:disabled{opacity:.6;cursor:default;}
+.genter{flex:1;padding:7px 4px;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);border-radius:8px;color:#4ade80;font-size:.75rem;font-weight:600;cursor:pointer;transition:.15s;font-family:var(--font);}
+.genter:hover{background:rgba(34,197,94,.15);}
+
+/* GROUP CHAT PANEL */
+.gchat-wrap{display:none;flex-direction:column;height:100%;}
+.gchat-wrap.on{display:flex;}
+.gchat-head{padding:10px 12px;border-bottom:1px solid var(--border);background:var(--s1);display:flex;align-items:center;gap:8px;flex-shrink:0;}
+.gchat-head .gchi{flex:1;min-width:0;}
+.gchat-head .gchi h3{font-size:.9rem;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.gchat-head .gchi p{font-size:.7rem;color:var(--muted);margin-top:1px;}
+.gmem-bar{padding:7px 14px;background:var(--s2);border-bottom:1px solid var(--border);font-size:.7rem;color:var(--muted);flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+
+/* NOTIFICATION POPUP */
+.notif{position:fixed;top:62px;right:14px;z-index:9998;background:var(--s1);border:1px solid var(--border);border-left:3px solid var(--green);border-radius:12px;padding:12px 14px;max-width:290px;display:flex;align-items:center;gap:10px;box-shadow:0 8px 40px rgba(0,0,0,.5);animation:nslide .3s ease;cursor:pointer;}
+@keyframes nslide{from{transform:translateX(100px);opacity:0}to{transform:translateX(0);opacity:1}}
+.notif .nav2{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.82rem;font-weight:700;flex-shrink:0;}
+.notif .ntxt .nn{font-size:.8rem;font-weight:700;}
+.notif .ntxt .nm{font-size:.73rem;color:var(--muted);margin-top:2px;max-width:180px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.notif .nx{background:none;border:none;color:var(--muted);cursor:pointer;font-size:1rem;margin-left:4px;flex-shrink:0;}
 
 /* TOAST */
-.toast{
-  position:fixed;bottom:22px;right:22px;z-index:9999;
-  background:var(--s1);border:1px solid var(--border);border-left:3px solid var(--accent);
-  border-radius:10px;padding:11px 16px;font-size:.83rem;max-width:280px;
-  animation:tslide .3s ease;box-shadow:0 8px 30px rgba(0,0,0,.4);
-}
+.toast{position:fixed;bottom:22px;right:22px;z-index:9999;background:var(--s1);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:10px;padding:11px 16px;font-size:.83rem;max-width:280px;animation:tslide .3s ease;box-shadow:0 8px 30px rgba(0,0,0,.4);}
 @keyframes tslide{from{transform:translateX(80px);opacity:0}to{transform:translateX(0);opacity:1}}
-
-/* CONFIG BANNER */
-.cfg-banner{
-  background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.25);
-  border-radius:10px;padding:12px 14px;margin-bottom:16px;font-size:.8rem;
-  color:#fde68a;line-height:1.6;
-}
-.cfg-banner strong{color:#fbbf24;}
-.cfg-banner code{background:rgba(0,0,0,.3);padding:1px 6px;border-radius:4px;font-family:'JetBrains Mono',monospace;font-size:.75rem;}
 </style>
 </head>
 <body>
 
-<!-- ═══════════ LANDING ═══════════ -->
+<!-- LANDING -->
 <div id="landing">
   <div class="land-inner">
     <div class="land-logo">
@@ -319,10 +231,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);display:flex
     </div>
     <div class="card">
       <h2>Join the conversation</h2>
-      <div class="field">
-        <label>Username</label>
-        <input id="l-un" type="text" placeholder="e.g. Rahul_Kota" maxlength="20"/>
-      </div>
+      <div class="field"><label>Username</label><input id="l-un" type="text" placeholder="e.g. Rahul_Kota" maxlength="20"/></div>
       <div class="field">
         <label>Gender</label>
         <div class="gender-row">
@@ -331,16 +240,10 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);display:flex
         </div>
       </div>
       <div class="two-col">
-        <div class="field">
-          <label>Age</label>
-          <select id="l-age">
-            <option>18</option><option>19</option><option selected>20</option>
-            <option>21</option><option>22</option><option>23</option><option>24</option>
-            <option>25</option><option>26</option><option>27</option><option>28+</option>
-          </select>
+        <div class="field"><label>Age</label>
+          <select id="l-age"><option>18</option><option>19</option><option selected>20</option><option>21</option><option>22</option><option>23</option><option>24</option><option>25</option><option>26</option><option>27</option><option>28+</option></select>
         </div>
-        <div class="field">
-          <label>Country</label>
+        <div class="field"><label>Country</label>
           <select id="l-ct" onchange="upStates('l')">
             <option value="India">🇮🇳 India</option>
             <option value="Bangladesh">🇧🇩 Bangladesh</option>
@@ -350,34 +253,28 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);display:flex
         </div>
       </div>
       <div class="two-col">
-        <div class="field">
-          <label>State</label>
-          <select id="l-st" onchange="upCities('l')"></select>
-        </div>
-        <div class="field">
-          <label>City</label>
-          <select id="l-ci"></select>
-        </div>
+        <div class="field"><label>State</label><select id="l-st" onchange="upCities('l')"></select></div>
+        <div class="field"><label>City</label><select id="l-ci"></select></div>
       </div>
       <button class="join-btn" id="join-btn" onclick="joinChat()">🚀 Start Chatting Free</button>
     </div>
     <div class="feat-row">
-      <div class="feat"><div class="ico">⚡</div><h4>Real Users</h4><p>Chat with real people online right now</p></div>
-      <div class="feat"><div class="ico">🔍</div><h4>City Search</h4><p>Find people from your exact city & state</p></div>
-      <div class="feat"><div class="ico">👥</div><h4>City Groups</h4><p>Create groups for your city or college</p></div>
-      <div class="feat"><div class="ico">🔒</div><h4>No Sign Up</h4><p>Zero registration. Just pick a name & go</p></div>
+      <div class="feat"><div class="ico">⚡</div><h4>Real Users</h4><p>Chat with real people online now</p></div>
+      <div class="feat"><div class="ico">🔔</div><h4>Notifications</h4><p>Sound alert for every new message</p></div>
+      <div class="feat"><div class="ico">🔍</div><h4>City Search</h4><p>Find people from your exact city</p></div>
+      <div class="feat"><div class="ico">👥</div><h4>Group Chat</h4><p>Create & chat in city groups</p></div>
     </div>
   </div>
 </div>
 
-<!-- ═══════════ APP ═══════════ -->
+<!-- APP -->
 <div id="app">
   <nav class="topbar">
     <div class="tlogo">💬 ChatZone</div>
     <div class="tab-bar">
-      <button class="tab on" onclick="sv('chat',this)">💬 Chat</button>
-      <button class="tab" onclick="sv('search',this)">🔍 Find</button>
-      <button class="tab" onclick="sv('groups',this)">👥 Groups</button>
+      <button class="tab on" id="tab-chat" onclick="sv('chat',this)">💬 Chat<span class="nbadge" id="badge-chat"></span></button>
+      <button class="tab" id="tab-search" onclick="sv('search',this)">🔍 Find</button>
+      <button class="tab" id="tab-groups" onclick="sv('groups',this)">👥 Groups<span class="nbadge" id="badge-groups"></span></button>
     </div>
     <div class="me-chip">
       <div class="av" id="me-av"></div>
@@ -388,7 +285,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);display:flex
 
   <div class="layout">
     <!-- SIDEBAR -->
-    <aside class="sidebar" id="sidebar">
+    <aside class="sidebar">
       <div class="sb-head">
         <h3>Online <span class="cnt" id="online-cnt">0</span></h3>
         <div class="srch"><input type="text" id="sb-q" placeholder="Search name or city…" oninput="filterSB()"/></div>
@@ -418,32 +315,31 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);display:flex
         <div id="no-chat" class="no-chat">
           <div class="big">👋</div>
           <h3>Welcome to ChatZone!</h3>
-          <p>Pick someone from the list to start a real conversation, or use <strong>Find</strong> to search by your city.</p>
+          <p>Pick someone from the list to chat, or use <strong>Find</strong> to search by your city.</p>
         </div>
         <div id="chat-panel" style="display:none;flex-direction:column;height:100%;">
           <div class="chat-head">
-            <div class="uav" id="cp-av" style="width:36px;height:36px;"></div>
+            <!-- FIX 1: BACK BUTTON -->
+            <button class="back-btn" onclick="closeChat()">&#8592; Back</button>
+            <div id="cp-av" style="width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.82rem;font-weight:700;flex-shrink:0;"></div>
             <div class="chi">
               <h3 id="cp-nm">—</h3>
               <p id="cp-meta">—</p>
             </div>
-            <div style="display:flex;gap:6px;">
-              <button class="hbtn" onclick="toast('🚫 User reported!')">🚩</button>
+            <div style="display:flex;gap:6px;flex-shrink:0;">
+              <button class="hbtn" title="Copy last message" onclick="copyLast('msgs')">📋</button>
+              <button class="hbtn" title="Report user" onclick="toast('🚩 Reported. Thank you!')">🚩</button>
             </div>
           </div>
           <div class="msgs" id="msgs"></div>
-          <div id="typing-row" class="typing-indicator" style="display:none;">
-            <span id="typing-name">Someone</span> is typing
-            <div class="typing-dots"><span></span><span></span><span></span></div>
-          </div>
           <div class="inp-area">
             <div class="ep hide" id="epick"></div>
             <div class="irow">
               <div class="iwrap">
-                <button class="ebtn" onclick="toggleEP()">😊</button>
-                <input type="text" id="minp" placeholder="Type a message…" onkeydown="if(e.key==='Enter'||event.key==='Enter')sendMsg()"/>
+                <button class="ebtn" onclick="toggleEP('epick')">😊</button>
+                <input type="text" id="minp" placeholder="Type a message…" onkeydown="if(event.key==='Enter')sendMsg()"/>
               </div>
-              <button class="sbtn" id="sbtn" onclick="sendMsg()">➤</button>
+              <button class="sbtn" onclick="sendMsg()">&#10148;</button>
             </div>
           </div>
         </div>
@@ -456,8 +352,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);display:flex
           <p>Search real online users by country, state or city</p>
           <div class="sf-card">
             <div class="sf-grid">
-              <div class="field">
-                <label>Country</label>
+              <div class="field"><label>Country</label>
                 <select id="s-ct" onchange="upStates('s')">
                   <option value="">All Countries</option>
                   <option value="India">🇮🇳 India</option>
@@ -466,16 +361,9 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);display:flex
                   <option value="Nepal">🇳🇵 Nepal</option>
                 </select>
               </div>
-              <div class="field">
-                <label>State / Province</label>
-                <select id="s-st" onchange="upCities('s')"><option value="">All States</option></select>
-              </div>
-              <div class="field">
-                <label>City</label>
-                <select id="s-ci"><option value="">All Cities</option></select>
-              </div>
-              <div class="field">
-                <label>Gender</label>
+              <div class="field"><label>State</label><select id="s-st" onchange="upCities('s')"><option value="">All States</option></select></div>
+              <div class="field"><label>City</label><select id="s-ci"><option value="">All Cities</option></select></div>
+              <div class="field"><label>Gender</label>
                 <select id="s-gn">
                   <option value="">Any</option>
                   <option value="male">👨 Male</option>
@@ -494,22 +382,16 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);display:flex
 
       <!-- GROUPS VIEW -->
       <div class="view" id="v-groups">
-        <div class="gv">
+        <!-- Group list -->
+        <div class="gv-list" id="gv-list-screen">
           <h2>👥 City Groups</h2>
-          <p>Create or join a group for your city, college, or any interest</p>
+          <p>Create or join a group — then enter to chat with everyone inside</p>
           <div class="gc-card">
             <h3>➕ Create New Group</h3>
             <div class="gf">
-              <div class="field">
-                <label>Group Name</label>
-                <input id="g-nm" type="text" placeholder="e.g. Kota Chatters"/>
-              </div>
-              <div class="field">
-                <label>Topic / Tag</label>
-                <input id="g-tg" type="text" placeholder="e.g. Education"/>
-              </div>
-              <div class="field">
-                <label>Country</label>
+              <div class="field"><label>Group Name</label><input id="g-nm" type="text" placeholder="e.g. Kota Chatters"/></div>
+              <div class="field"><label>Topic</label><input id="g-tg" type="text" placeholder="e.g. Education"/></div>
+              <div class="field"><label>Country</label>
                 <select id="g-ct" onchange="upStates('g')">
                   <option value="India">🇮🇳 India</option>
                   <option value="Bangladesh">🇧🇩 Bangladesh</option>
@@ -517,21 +399,10 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);display:flex
                   <option value="Nepal">🇳🇵 Nepal</option>
                 </select>
               </div>
-              <div class="field">
-                <label>State</label>
-                <select id="g-st" onchange="upCities('g')"></select>
-              </div>
-              <div class="field">
-                <label>City</label>
-                <select id="g-ci"></select>
-              </div>
-              <div class="field">
-                <label>Icon</label>
-                <select id="g-ic">
-                  <option>🏙️</option><option>🎓</option><option>🎮</option><option>💼</option>
-                  <option>🏏</option><option>🎵</option><option>🍜</option><option>🌟</option>
-                  <option>🤝</option><option>💬</option><option>🚀</option><option>🏍️</option>
-                </select>
+              <div class="field"><label>State</label><select id="g-st" onchange="upCities('g')"></select></div>
+              <div class="field"><label>City</label><select id="g-ci"></select></div>
+              <div class="field"><label>Icon</label>
+                <select id="g-ic"><option>🏙️</option><option>🎓</option><option>🎮</option><option>💼</option><option>🏏</option><option>🎵</option><option>🍜</option><option>🌟</option><option>🤝</option><option>💬</option><option>🚀</option><option>🏍️</option></select>
               </div>
             </div>
             <button class="btn btn-p" onclick="createGroup()" style="width:100%;margin-top:12px;">Create Group</button>
@@ -539,26 +410,43 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);display:flex
           <h3 style="font-size:.87rem;font-weight:700;margin-bottom:10px;">Active Groups</h3>
           <div class="gl" id="glist"></div>
         </div>
+
+        <!-- FIX 3: Group CHAT screen with back button -->
+        <div class="gchat-wrap" id="gchat-screen">
+          <div class="gchat-head">
+            <button class="back-btn" onclick="closeGroupChat()">&#8592; Back</button>
+            <div id="gcp-icon" style="width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--purple),var(--pink));display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;"></div>
+            <div class="gchi">
+              <h3 id="gcp-nm">Group</h3>
+              <p id="gcp-meta">—</p>
+            </div>
+            <div style="display:flex;gap:6px;flex-shrink:0;">
+              <button class="hbtn" title="Copy last message" onclick="copyLast('gmsgs')">📋</button>
+            </div>
+          </div>
+          <div class="gmem-bar" id="gmem-bar">👥 Loading…</div>
+          <div class="msgs" id="gmsgs"></div>
+          <div class="inp-area">
+            <div class="ep hide" id="gepick"></div>
+            <div class="irow">
+              <div class="iwrap">
+                <button class="ebtn" onclick="toggleEP('gepick')">😊</button>
+                <input type="text" id="gminp" placeholder="Message the group…" onkeydown="if(event.key==='Enter')sendGroupMsg()"/>
+              </div>
+              <button class="sbtn" onclick="sendGroupMsg()">&#10148;</button>
+            </div>
+          </div>
+        </div>
       </div>
 
     </div>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════
-     FIREBASE SDK
-═══════════════════════════════════════════════════════════ -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import {
-  getDatabase, ref, push, set, onValue, onDisconnect,
-  serverTimestamp, remove, off, get
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+import { getDatabase, ref, push, set, onValue, onDisconnect, serverTimestamp, off } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
-// ══════════════════════════════════════════
-//  🔧 PASTE YOUR FIREBASE CONFIG BELOW
-//  Get it from: Firebase Console → Project Settings → Your Apps
-// ══════════════════════════════════════════
 const FIREBASE_CONFIG = {
   apiKey: "AIzaSyDJnqPz4NqxVXPcZYyRooOXuqWPltis9dQ",
   authDomain: "chat-zone-2955c.firebaseapp.com",
@@ -570,300 +458,253 @@ const FIREBASE_CONFIG = {
   measurementId: "G-BQBBJKRTQZ"
 };
 
-// ══════════════════════════════════════════════════════════════
-
 const GEO = {
-  India:{
-    "Rajasthan":["Jaipur","Jodhpur","Kota","Udaipur","Ajmer","Bikaner","Alwar","Sikar","Bharatpur","Pali","Chittorgarh","Sri Ganganagar"],
-    "Uttar Pradesh":["Lucknow","Kanpur","Varanasi","Agra","Prayagraj","Meerut","Ghaziabad","Noida","Mathura","Aligarh","Bareilly","Moradabad"],
-    "Maharashtra":["Mumbai","Pune","Nagpur","Nashik","Aurangabad","Solapur","Kolhapur","Thane","Navi Mumbai","Amravati"],
-    "Delhi":["New Delhi","Dwarka","Rohini","Pitampura","Janakpuri","Saket","Laxmi Nagar","Karol Bagh","Sarojini Nagar","Vasant Kunj"],
-    "West Bengal":["Kolkata","Howrah","Durgapur","Asansol","Siliguri","Bardhaman","Malda","Haldia"],
-    "Karnataka":["Bengaluru","Mysuru","Hubli","Mangaluru","Belagavi","Kalaburagi","Davanagere","Udupi"],
-    "Gujarat":["Ahmedabad","Surat","Vadodara","Rajkot","Bhavnagar","Jamnagar","Gandhinagar"],
-    "Bihar":["Patna","Gaya","Bhagalpur","Muzaffarpur","Purnia","Darbhanga","Arrah","Munger"],
-    "Tamil Nadu":["Chennai","Coimbatore","Madurai","Tiruchirappalli","Salem","Tirunelveli","Vellore"],
-    "Telangana":["Hyderabad","Warangal","Nizamabad","Karimnagar","Khammam","Secunderabad"],
-    "Punjab":["Ludhiana","Amritsar","Jalandhar","Patiala","Bathinda","Mohali"],
-    "Haryana":["Faridabad","Gurugram","Rohtak","Panipat","Hisar","Karnal","Sonipat"],
-    "Madhya Pradesh":["Bhopal","Indore","Jabalpur","Gwalior","Ujjain","Sagar","Dewas"],
-    "Odisha":["Bhubaneswar","Cuttack","Rourkela","Berhampur","Sambalpur","Puri"],
-    "Jharkhand":["Ranchi","Jamshedpur","Dhanbad","Bokaro","Deoghar","Hazaribagh"],
-  },
-  Bangladesh:{
-    "Dhaka":["Dhaka City","Narayanganj","Gazipur","Narsingdi","Manikganj","Munshiganj","Faridpur"],
-    "Chittagong":["Chittagong City","Cox's Bazar","Comilla","Noakhali","Feni","Lakshmipur"],
-    "Rajshahi":["Rajshahi City","Bogura","Pabna","Sirajganj","Joypurhat","Naogaon"],
-    "Khulna":["Khulna City","Bagerhat","Satkhira","Jessore","Jhenaidah","Kushtia"],
-    "Sylhet":["Sylhet City","Moulvibazar","Habiganj","Sunamganj"],
-    "Barisal":["Barisal City","Patuakhali","Bhola","Jhalokati","Pirojpur"],
-    "Mymensingh":["Mymensingh City","Jamalpur","Netrokona","Sherpur"],
-  },
-  Pakistan:{
-    "Punjab":["Lahore","Faisalabad","Rawalpindi","Gujranwala","Multan","Sargodha","Sialkot","Bahawalpur"],
-    "Sindh":["Karachi","Hyderabad","Sukkur","Larkana","Nawabshah","Mirpur Khas"],
-    "Khyber Pakhtunkhwa":["Peshawar","Mardan","Mingora","Kohat","Abbottabad","Mansehra"],
-    "Balochistan":["Quetta","Turbat","Khuzdar","Hub","Gwadar"],
-    "Islamabad Capital Territory":["Islamabad","F-6","G-6","Blue Area","I-8","G-9"],
-    "Azad Kashmir":["Muzaffarabad","Mirpur","Rawalakot","Kotli","Bagh"],
-  },
-  Nepal:{
-    "Bagmati":["Kathmandu","Lalitpur","Bhaktapur","Kirtipur","Dhulikhel","Hetauda","Bharatpur"],
-    "Gandaki":["Pokhara","Baglung","Gorkha","Kaski","Lamjung","Mustang"],
-    "Lumbini":["Butwal","Bhairahawa","Tansen","Tulsipur","Nepalgunj"],
-    "Koshi":["Biratnagar","Itahari","Dharan","Birtamod","Damak","Dhankuta"],
-    "Madhesh":["Janakpur","Rajbiraj","Birgunj","Jaleshwar","Gaur","Lahan"],
-  }
+  India:{"Rajasthan":["Jaipur","Jodhpur","Kota","Udaipur","Ajmer","Bikaner","Alwar","Sikar","Bharatpur","Pali","Chittorgarh","Sri Ganganagar"],"Uttar Pradesh":["Lucknow","Kanpur","Varanasi","Agra","Prayagraj","Meerut","Ghaziabad","Noida","Mathura","Aligarh","Bareilly"],"Maharashtra":["Mumbai","Pune","Nagpur","Nashik","Aurangabad","Solapur","Thane","Navi Mumbai","Amravati"],"Delhi":["New Delhi","Dwarka","Rohini","Pitampura","Janakpuri","Saket","Laxmi Nagar","Karol Bagh"],"West Bengal":["Kolkata","Howrah","Durgapur","Asansol","Siliguri","Bardhaman"],"Karnataka":["Bengaluru","Mysuru","Hubli","Mangaluru","Belagavi","Udupi"],"Gujarat":["Ahmedabad","Surat","Vadodara","Rajkot","Bhavnagar","Gandhinagar"],"Bihar":["Patna","Gaya","Bhagalpur","Muzaffarpur","Purnia","Darbhanga"],"Tamil Nadu":["Chennai","Coimbatore","Madurai","Tiruchirappalli","Salem","Vellore"],"Telangana":["Hyderabad","Warangal","Nizamabad","Karimnagar","Secunderabad"],"Punjab":["Ludhiana","Amritsar","Jalandhar","Patiala","Bathinda","Mohali"],"Haryana":["Faridabad","Gurugram","Rohtak","Panipat","Hisar","Karnal"],"Madhya Pradesh":["Bhopal","Indore","Jabalpur","Gwalior","Ujjain","Sagar"],"Odisha":["Bhubaneswar","Cuttack","Rourkela","Berhampur","Sambalpur"],"Jharkhand":["Ranchi","Jamshedpur","Dhanbad","Bokaro"]},
+  Bangladesh:{"Dhaka":["Dhaka City","Narayanganj","Gazipur","Narsingdi","Faridpur"],"Chittagong":["Chittagong City","Cox's Bazar","Comilla","Noakhali","Feni"],"Rajshahi":["Rajshahi City","Bogura","Pabna","Sirajganj","Naogaon"],"Khulna":["Khulna City","Bagerhat","Satkhira","Jessore","Kushtia"],"Sylhet":["Sylhet City","Moulvibazar","Habiganj","Sunamganj"],"Barisal":["Barisal City","Patuakhali","Bhola"],"Mymensingh":["Mymensingh City","Jamalpur","Netrokona"]},
+  Pakistan:{"Punjab":["Lahore","Faisalabad","Rawalpindi","Gujranwala","Multan","Sialkot","Bahawalpur"],"Sindh":["Karachi","Hyderabad","Sukkur","Larkana","Nawabshah"],"Khyber Pakhtunkhwa":["Peshawar","Mardan","Mingora","Kohat","Abbottabad"],"Balochistan":["Quetta","Turbat","Khuzdar","Hub","Gwadar"],"Islamabad Capital Territory":["Islamabad","F-6","G-6","Blue Area","I-8"],"Azad Kashmir":["Muzaffarabad","Mirpur","Rawalakot","Kotli"]},
+  Nepal:{"Bagmati":["Kathmandu","Lalitpur","Bhaktapur","Kirtipur","Hetauda"],"Gandaki":["Pokhara","Baglung","Gorkha","Lamjung"],"Lumbini":["Butwal","Bhairahawa","Tansen","Tulsipur"],"Koshi":["Biratnagar","Itahari","Dharan","Birtamod"],"Madhesh":["Janakpur","Rajbiraj","Birgunj","Jaleshwar"]}
 };
 
-let app, db, ME = null, selGender = 'male';
-let onlineUsers = {}, activeUID = null, convListeners = {};
-let localGroups = [
-  {id:'g1',name:'Kota Chatters',country:'India',state:'Rajasthan',city:'Kota',tag:'Education',icon:'🎓',members:42},
-  {id:'g2',name:'Jaipur Pinkcity',country:'India',state:'Rajasthan',city:'Jaipur',tag:'Culture',icon:'🏙️',members:89},
-  {id:'g3',name:'Dhaka Vibes',country:'Bangladesh',state:'Dhaka',city:'Dhaka City',tag:'General',icon:'💬',members:134},
-  {id:'g4',name:'Lahore Legends',country:'Pakistan',state:'Punjab',city:'Lahore',tag:'General',icon:'🌟',members:76},
-  {id:'g5',name:'Mumbai Hustlers',country:'India',state:'Maharashtra',city:'Mumbai',tag:'Work',icon:'💼',members:201},
-  {id:'g6',name:'Kathmandu Crew',country:'Nepal',state:'Bagmati',city:'Kathmandu',tag:'Memes',icon:'🎮',members:58},
+const FLAGS={India:'🇮🇳',Bangladesh:'🇧🇩',Pakistan:'🇵🇰',Nepal:'🇳🇵'};
+const TAGS={India:'t-in',Bangladesh:'t-bd',Pakistan:'t-pk',Nepal:'t-np'};
+const COLORS=['#3b82f6','#8b5cf6','#ec4899','#f97316','#22c55e','#f59e0b','#06b6d4','#ef4444','#84cc16','#a78bfa'];
+const EMOJIS=['😀','😂','🥰','😎','🤔','😅','🎉','👍','❤️','🔥','💯','😭','🙏','✨','💪','🤝','😊','🥳','💬','👋','🤣','😍','🎯','⚡','🌟','😘','🫂','🙌','😜','🤩'];
+
+let db, ME=null, selGender='male';
+let onlineUsers={}, activeUID=null, activeGID=null;
+let convListeners={}, groupListener=null;
+let unreadCounts={};
+let localGroups=[
+  {id:'g1',name:'Kota Chatters',country:'India',state:'Rajasthan',city:'Kota',tag:'Education',icon:'🎓',members:42,joined:false},
+  {id:'g2',name:'Jaipur Pinkcity',country:'India',state:'Rajasthan',city:'Jaipur',tag:'Culture',icon:'🏙️',members:89,joined:false},
+  {id:'g3',name:'Dhaka Vibes',country:'Bangladesh',state:'Dhaka',city:'Dhaka City',tag:'General',icon:'💬',members:134,joined:false},
+  {id:'g4',name:'Lahore Legends',country:'Pakistan',state:'Punjab',city:'Lahore',tag:'General',icon:'🌟',members:76,joined:false},
+  {id:'g5',name:'Mumbai Hustlers',country:'India',state:'Maharashtra',city:'Mumbai',tag:'Work',icon:'💼',members:201,joined:false},
+  {id:'g6',name:'Kathmandu Crew',country:'Nepal',state:'Bagmati',city:'Kathmandu',tag:'Memes',icon:'🎮',members:58,joined:false},
 ];
-const EMOJIS = ['😀','😂','🥰','😎','🤔','😅','🎉','👍','❤️','🔥','💯','😭','🙏','✨','💪','🤝','😊','🥳','💬','👋','🤣','😍','🎯','⚡','🌟'];
-const FLAGS  = {India:'🇮🇳',Bangladesh:'🇧🇩',Pakistan:'🇵🇰',Nepal:'🇳🇵'};
-const TAGS   = {India:'t-in',Bangladesh:'t-bd',Pakistan:'t-pk',Nepal:'t-np'};
-const COLORS = ['#3b82f6','#8b5cf6','#ec4899','#f97316','#22c55e','#f59e0b','#06b6d4','#ef4444','#84cc16','#a78bfa'];
 
-// ─── UTILS ───
-window.toast = (msg) => {
-  const t = document.createElement('div');
-  t.className='toast'; t.textContent=msg;
-  document.body.appendChild(t);
-  setTimeout(()=>t.remove(), 3200);
-};
+// ── AUDIO (FIX 2) ──
+let audioCtx=null;
+function ensureAudio(){ try{ if(!audioCtx) audioCtx=new(window.AudioContext||window.webkitAudioContext)(); }catch(e){} }
+function playTing(){
+  try{
+    ensureAudio();
+    const o=audioCtx.createOscillator(), g=audioCtx.createGain();
+    o.connect(g); g.connect(audioCtx.destination);
+    o.type='sine';
+    o.frequency.setValueAtTime(1046, audioCtx.currentTime);
+    o.frequency.exponentialRampToValueAtTime(523, audioCtx.currentTime+0.25);
+    g.gain.setValueAtTime(0.35, audioCtx.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime+0.5);
+    o.start(); o.stop(audioCtx.currentTime+0.5);
+  }catch(e){}
+}
+
+// ── UTILS ──
+window.toast=(msg,col='var(--accent)')=>{ const t=document.createElement('div'); t.className='toast'; t.textContent=msg; t.style.borderLeftColor=col; document.body.appendChild(t); setTimeout(()=>t.remove(),3000); };
+
+function showNotif(senderName, senderUid, text, onClick){
+  const col=colorFor(senderUid);
+  const n=document.createElement('div'); n.className='notif';
+  n.innerHTML=`<div class="nav2" style="background:${col}22;color:${col}">${senderName[0].toUpperCase()}</div><div class="ntxt"><div class="nn">${esc(senderName)}</div><div class="nm">${esc(text)}</div></div><button class="nx" onclick="this.parentElement.remove();event.stopPropagation()">✕</button>`;
+  n.onclick=(e)=>{ if(e.target.classList.contains('nx')) return; n.remove(); if(onClick) onClick(); };
+  document.body.appendChild(n);
+  setTimeout(()=>{ if(n.parentElement) n.remove(); },5000);
+}
+
 function ftime(){ const d=new Date(); return d.getHours().toString().padStart(2,'0')+':'+d.getMinutes().toString().padStart(2,'0'); }
-function colorFor(uid){ let h=0; for(let i=0;i<uid.length;i++)h=(h+uid.charCodeAt(i))%COLORS.length; return COLORS[h]; }
-function esc(t){ return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function colorFor(uid){ let h=0; for(let i=0;i<uid.length;i++) h=(h+uid.charCodeAt(i))%COLORS.length; return COLORS[h]; }
+function esc(t){ return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 function flag(c){ return FLAGS[c]||'🌏'; }
 
-// ─── GEO ───
-function upStates(prefix){
-  const cEl = document.getElementById(prefix+'-ct');
-  const sEl = document.getElementById(prefix+'-st');
+// ── GEO ──
+function upStates(p){
+  const cEl=document.getElementById(p+'-ct'), sEl=document.getElementById(p+'-st');
   if(!cEl||!sEl) return;
-  const c = cEl.value;
-  sEl.innerHTML = (prefix==='s'||prefix==='sb') ? '<option value="">All States</option>' : '';
-  Object.keys(GEO[c]||{}).forEach(s=>{ const o=document.createElement('option'); o.value=s; o.textContent=s; sEl.appendChild(o); });
-  upCities(prefix);
+  sEl.innerHTML=(p==='s')?'<option value="">All States</option>':'';
+  Object.keys(GEO[cEl.value]||{}).forEach(s=>{ const o=document.createElement('option'); o.value=s; o.textContent=s; sEl.appendChild(o); });
+  upCities(p);
 }
-window.upStates = upStates;
-function upCities(prefix){
-  const cEl=document.getElementById(prefix+'-ct');
-  const sEl=document.getElementById(prefix+'-st');
-  const ciEl=document.getElementById(prefix+'-ci');
+window.upStates=upStates;
+
+function upCities(p){
+  const cEl=document.getElementById(p+'-ct'), sEl=document.getElementById(p+'-st'), ciEl=document.getElementById(p+'-ci');
   if(!cEl||!sEl||!ciEl) return;
+  ciEl.innerHTML=(p==='s')?'<option value="">All Cities</option>':'';
   const c=cEl.value, s=sEl.value;
-  ciEl.innerHTML = (prefix==='s') ? '<option value="">All Cities</option>' : '';
-  if(c && s){ (GEO[c][s]||[]).forEach(city=>{ const o=document.createElement('option'); o.value=city; o.textContent=city; ciEl.appendChild(o); }); }
+  if(c&&s)(GEO[c][s]||[]).forEach(city=>{ const o=document.createElement('option'); o.value=city; o.textContent=city; ciEl.appendChild(o); });
 }
-window.upCities = upCities;
+window.upCities=upCities;
 
-// ─── LANDING ───
-window.setG = (g, btn) => {
-  selGender = g;
-  document.querySelectorAll('.g-btn').forEach(b=>b.classList.remove('on'));
-  btn.classList.add('on');
-};
+// ── LANDING ──
+window.setG=(g,btn)=>{ selGender=g; document.querySelectorAll('.g-btn').forEach(b=>b.classList.remove('on')); btn.classList.add('on'); };
 
-window.joinChat = async () => {
-  const un = document.getElementById('l-un').value.trim();
-  if(!un || un.length<3){ toast('⚠️ Username must be at least 3 characters'); return; }
-  const country = document.getElementById('l-ct').value;
-  const state   = document.getElementById('l-st').value;
-  const city    = document.getElementById('l-ci').value;
-  const age     = document.getElementById('l-age').value;
-  if(!state){ toast('⚠️ Please select a state'); return; }
-  if(!city){  toast('⚠️ Please select a city');  return; }
-
-  const btn = document.getElementById('join-btn');
-  btn.disabled = true; btn.textContent = 'Connecting…';
-
-  try {
-    // Init Firebase
-    app = initializeApp(FIREBASE_CONFIG);
-    db  = getDatabase(app);
-
-    const uid = Date.now().toString(36) + Math.random().toString(36).slice(2,6);
-    ME = { uid, name:un, gender:selGender, country, state, city, age, color:colorFor(uid) };
-
-    // Register presence
-    const presRef = ref(db, 'presence/'+uid);
-    await set(presRef, { ...ME, online:true, ts: serverTimestamp() });
-    onDisconnect(presRef).remove();
-
-    // Launch app
+window.joinChat=async()=>{
+  const un=document.getElementById('l-un').value.trim();
+  if(!un||un.length<3){ toast('⚠️ Username must be at least 3 characters','var(--orange)'); return; }
+  const country=document.getElementById('l-ct').value;
+  const state=document.getElementById('l-st').value;
+  const city=document.getElementById('l-ci').value;
+  const age=document.getElementById('l-age').value;
+  if(!state){ toast('⚠️ Please select a state','var(--orange)'); return; }
+  if(!city){ toast('⚠️ Please select a city','var(--orange)'); return; }
+  const btn=document.getElementById('join-btn');
+  btn.disabled=true; btn.textContent='Connecting…';
+  try{
+    const app=initializeApp(FIREBASE_CONFIG);
+    db=getDatabase(app);
+    const uid=Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+    ME={uid,name:un,gender:selGender,country,state,city,age,color:colorFor(uid)};
+    const pr=ref(db,'presence/'+uid);
+    await set(pr,{...ME,online:true,ts:serverTimestamp()});
+    onDisconnect(pr).remove();
     document.getElementById('landing').style.display='none';
     document.getElementById('app').classList.add('show');
-    const av = document.getElementById('me-av');
-    av.textContent = un[0].toUpperCase();
-    av.style.cssText = `background:${ME.color}22;color:${ME.color}`;
-    document.getElementById('me-nm').textContent = un;
-
+    const av=document.getElementById('me-av');
+    av.textContent=un[0].toUpperCase(); av.style.cssText=`background:${ME.color}22;color:${ME.color}`;
+    document.getElementById('me-nm').textContent=un;
     initApp();
-  } catch(err) {
+  }catch(err){
     btn.disabled=false; btn.textContent='🚀 Start Chatting Free';
-    if(err.message?.includes('API key') || err.message?.includes('invalid') || err.message?.includes('configuration')) {
-      showConfigError();
-    } else {
-      toast('❌ Connection failed: '+err.message);
-    }
+    toast('❌ Error: '+err.message,'var(--orange)');
+    console.error(err);
   }
 };
 
-function showConfigError(){
-  const card = document.querySelector('#landing .card');
-  if(!card.querySelector('.cfg-banner')){
-    const b = document.createElement('div');
-    b.className='cfg-banner';
-    b.innerHTML=`
-      <strong>⚙️ Firebase Setup Required</strong><br>
-      You need to add your own Firebase config to make real-time chat work.<br><br>
-      <strong>Steps:</strong><br>
-      1. Go to <strong>console.firebase.google.com</strong><br>
-      2. Create a project → Add a Web App<br>
-      3. Enable <strong>Realtime Database</strong> (test mode)<br>
-      4. Copy your config and replace <code>FIREBASE_CONFIG</code> in the HTML file<br><br>
-      <strong>Then host on Vercel/Netlify</strong> and share the URL — real users can join!
-    `;
-    card.insertBefore(b, card.firstChild);
-  }
-  document.getElementById('join-btn').disabled=false;
-  document.getElementById('join-btn').textContent='🚀 Start Chatting Free';
-}
-
-// ─── APP INIT ───
+// ── INIT ──
 function initApp(){
-  initEmoji();
-  upStates('g'); // groups form
-  listenOnline();
+  initEmoji('epick','minp');
+  initEmoji('gepick','gminp');
+  upStates('g');
   renderGroups();
+  listenOnline();
+  document.addEventListener('click',()=>ensureAudio(),{once:true});
 }
 
 function listenOnline(){
-  const presRef = ref(db,'presence');
-  onValue(presRef, snap=>{
-    onlineUsers = {};
-    snap.forEach(child=>{ const u=child.val(); if(u&&u.uid&&u.uid!==ME.uid) onlineUsers[u.uid]=u; });
+  onValue(ref(db,'presence'),snap=>{
+    onlineUsers={};
+    snap.forEach(c=>{ const u=c.val(); if(u&&u.uid&&u.uid!==ME.uid) onlineUsers[u.uid]=u; });
     renderSidebar(Object.values(onlineUsers));
   });
 }
 
-// ─── SIDEBAR ───
+// ── SIDEBAR ──
 function renderSidebar(users){
-  document.getElementById('online-cnt').textContent = users.length;
-  const el = document.getElementById('ulist');
-  if(!users.length){
-    el.innerHTML='<div style="text-align:center;padding:32px 16px;color:var(--muted);font-size:.8rem;">No one else online yet.<br>Share the link to invite friends!</div>';
-    return;
-  }
+  document.getElementById('online-cnt').textContent=users.length;
+  const el=document.getElementById('ulist');
+  if(!users.length){ el.innerHTML='<div style="text-align:center;padding:32px 12px;color:var(--muted);font-size:.8rem;">No one else online yet.<br><br>Share the link to invite friends! 🔗</div>'; return; }
   el.innerHTML='';
   users.forEach(u=>{
+    const col=colorFor(u.uid), unread=unreadCounts[u.uid]||0;
     const d=document.createElement('div');
     d.className='uitem'+(activeUID===u.uid?' on':'');
-    const col=colorFor(u.uid);
-    d.innerHTML=`
-      <div class="uav" style="background:${col}22;color:${col}">${u.name[0].toUpperCase()}<span class="odot"></span></div>
-      <div class="uinfo">
-        <div class="uname">${esc(u.name)}</div>
-        <div class="umeta">${flag(u.country)} ${esc(u.city)}, ${esc(u.state)}</div>
-      </div>
-    `;
+    d.innerHTML=`<div class="uav" style="background:${col}22;color:${col}">${u.name[0].toUpperCase()}<span class="odot"></span></div><div class="uinfo"><div class="uname">${esc(u.name)}</div><div class="umeta">${flag(u.country)} ${esc(u.city)}, ${esc(u.state)}</div></div>${unread?`<div class="unread-pill">${unread}</div>`:''}`;
     d.onclick=()=>openChat(u);
     el.appendChild(d);
   });
 }
-window.filterSB = ()=>{
+window.filterSB=()=>{
   const q=document.getElementById('sb-q').value.toLowerCase();
-  const fc=document.getElementById('sb-ct').value;
-  const fg=document.getElementById('sb-gn').value;
-  const f=Object.values(onlineUsers).filter(u=>{
-    if(q && !u.name.toLowerCase().includes(q) && !u.city.toLowerCase().includes(q)) return false;
-    if(fc && u.country!==fc) return false;
-    if(fg && u.gender!==fg) return false;
+  const fc=document.getElementById('sb-ct').value, fg=document.getElementById('sb-gn').value;
+  renderSidebar(Object.values(onlineUsers).filter(u=>{
+    if(q&&!u.name.toLowerCase().includes(q)&&!u.city.toLowerCase().includes(q)) return false;
+    if(fc&&u.country!==fc) return false;
+    if(fg&&u.gender!==fg) return false;
     return true;
-  });
-  renderSidebar(f);
+  }));
 };
 
-// ─── CHAT ───
+// ── CHAT ──
 function openChat(user){
-  activeUID = user.uid;
+  activeUID=user.uid; unreadCounts[user.uid]=0;
   document.getElementById('no-chat').style.display='none';
   const cp=document.getElementById('chat-panel'); cp.style.display='flex';
   const col=colorFor(user.uid);
   const av=document.getElementById('cp-av');
   av.textContent=user.name[0].toUpperCase();
-  av.style.cssText=`background:${col}22;color:${col};width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700;`;
+  av.style.cssText=`background:${col}22;color:${col};width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.82rem;font-weight:700;flex-shrink:0;`;
   document.getElementById('cp-nm').textContent=user.name;
   document.getElementById('cp-meta').innerHTML=`${flag(user.country)} ${esc(user.city)}, ${esc(user.state)} &bull; ${user.gender==='male'?'👨':'👩'} ${user.age}`;
-
   loadMessages(user.uid);
   renderSidebar(Object.values(onlineUsers));
-  sv('chat', document.querySelector('.tab'));
+  sv('chat',document.getElementById('tab-chat'));
 }
 
+// FIX 1: Back button — returns to welcome screen
+window.closeChat=()=>{
+  activeUID=null;
+  document.getElementById('chat-panel').style.display='none';
+  document.getElementById('no-chat').style.display='flex';
+  document.getElementById('msgs').innerHTML='';
+  renderSidebar(Object.values(onlineUsers));
+};
+
 function chatKey(a,b){ return [a,b].sort().join('__'); }
+let msgCounts={};
 
 function loadMessages(uid){
-  const key = chatKey(ME.uid, uid);
-  const msgRef = ref(db,'chats/'+key);
-  if(convListeners[key]) off(msgRef,'value',convListeners[key]);
-  const el = document.getElementById('msgs');
+  const key=chatKey(ME.uid,uid);
+  const mRef=ref(db,'chats/'+key);
+  if(convListeners[key]) off(mRef,'value',convListeners[key]);
+  const el=document.getElementById('msgs');
   el.innerHTML='<div class="sys-msg"><span>Conversation start 👋</span></div>';
-  convListeners[key] = onValue(msgRef, snap=>{
+  let first=true, prev=0;
+  convListeners[key]=onValue(mRef,snap=>{
     el.innerHTML='<div class="sys-msg"><span>Conversation start 👋</span></div>';
-    snap.forEach(child=>{
-      const m=child.val();
-      appendMsg(m);
-    });
+    let count=0;
+    snap.forEach(c=>{ appendMsg(c.val(),el,false); count++; });
+    // FIX 2: Sound + popup notification for new messages
+    if(!first && count>prev){
+      const all=snap.val();
+      if(all){
+        const last=all[Object.keys(all).pop()];
+        if(last.from!==ME.uid){
+          playTing();
+          if(activeUID!==uid){
+            unreadCounts[uid]=(unreadCounts[uid]||0)+1;
+            renderSidebar(Object.values(onlineUsers));
+            const sender=onlineUsers[uid];
+            if(sender) showNotif(sender.name,sender.uid,last.text,()=>openChat(sender));
+          }
+        }
+      }
+    }
+    prev=count; first=false;
     el.scrollTop=el.scrollHeight;
   });
 }
 
-function appendMsg(m){
-  const el=document.getElementById('msgs');
+function appendMsg(m, container, scroll=true){
+  const el=container||document.getElementById('msgs');
   const isMe=m.from===ME.uid;
-  const user=isMe?ME:{uid:m.from,name:m.senderName,color:colorFor(m.from)};
-  const d=document.createElement('div');
-  d.className='msg-row'+(isMe?' me':'');
-  d.innerHTML=`
-    <div class="mav" style="background:${user.color}22;color:${user.color}">${user.name[0]}</div>
-    <div class="mc">
-      <div class="msender">${esc(user.name)}</div>
-      <div class="mb">${esc(m.text)}</div>
-      <div class="mtime">${m.time||''}</div>
-    </div>
-  `;
+  const uname=isMe?ME.name:m.senderName;
+  const ucol=colorFor(m.from);
+  const d=document.createElement('div'); d.className='msg-row'+(isMe?' me':'');
+  const safeText=esc(m.text);
+  d.innerHTML=`<div class="mav" style="background:${ucol}22;color:${ucol}">${uname[0]}</div><div class="mc"><div class="msender">${esc(uname)}</div><div class="mb-wrap"><div class="mb">${safeText}</div><button class="copy-btn" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent).then(()=>toast('📋 Copied!'))">Copy</button></div><div class="mtime">${m.time||''}</div></div>`;
   el.appendChild(d);
+  if(scroll) el.scrollTop=el.scrollHeight;
 }
 
-window.sendMsg = async ()=>{
-  const inp=document.getElementById('minp');
-  const text=inp.value.trim();
-  if(!text||!activeUID) return;
-  inp.value='';
-  const key=chatKey(ME.uid,activeUID);
-  await push(ref(db,'chats/'+key), {
-    from:ME.uid, senderName:ME.name,
-    text, time:ftime(), ts:serverTimestamp()
-  });
+window.sendMsg=async()=>{
+  const inp=document.getElementById('minp'), text=inp.value.trim();
+  if(!text||!activeUID) return; inp.value='';
+  await push(ref(db,'chats/'+chatKey(ME.uid,activeUID)),{from:ME.uid,senderName:ME.name,text,time:ftime(),ts:serverTimestamp()});
 };
 
-// ─── SEARCH ───
-window.doSearch = ()=>{
-  const ct=document.getElementById('s-ct').value;
-  const st=document.getElementById('s-st').value;
-  const ci=document.getElementById('s-ci').value;
-  const gn=document.getElementById('s-gn').value;
-  const all=Object.values(onlineUsers);
-  const res=all.filter(u=>{
+// FIX 2: copy last message
+window.copyLast=(msgsId)=>{
+  const mbs=document.getElementById(msgsId)?.querySelectorAll('.mb');
+  if(mbs&&mbs.length){ navigator.clipboard.writeText(mbs[mbs.length-1].textContent).then(()=>toast('📋 Copied!')); }
+  else toast('No message to copy');
+};
+
+// ── SEARCH ──
+window.doSearch=()=>{
+  const ct=document.getElementById('s-ct').value, st=document.getElementById('s-st').value;
+  const ci=document.getElementById('s-ci').value, gn=document.getElementById('s-gn').value;
+  const res=Object.values(onlineUsers).filter(u=>{
     if(ct&&u.country!==ct) return false;
     if(st&&u.state!==st) return false;
     if(ci&&u.city!==ci) return false;
@@ -871,45 +712,92 @@ window.doSearch = ()=>{
     return true;
   });
   const el=document.getElementById('sres');
-  if(!res.length){
-    el.innerHTML='<div style="text-align:center;padding:32px;color:var(--muted);"><div style="font-size:2rem;margin-bottom:8px">🔍</div><p style="font-size:.83rem">No online users match this filter.<br>Try broadening your search.</p></div>';
-    return;
-  }
+  if(!res.length){ el.innerHTML='<div style="text-align:center;padding:32px;color:var(--muted);"><div style="font-size:2rem;margin-bottom:8px">🔍</div><p style="font-size:.83rem">No online users match this filter.<br>Try broadening your search.</p></div>'; return; }
   el.innerHTML=`<p style="font-size:.78rem;color:var(--muted);margin-bottom:10px">Found <strong style="color:var(--accent)">${res.length}</strong> user${res.length!==1?'s':''} online</p><div class="rg">`+
-  res.map(u=>`
-    <div class="rc" onclick='openChatFromSearch("${u.uid}")'>
-      <div class="bav" style="background:${colorFor(u.uid)}22;color:${colorFor(u.uid)}">${u.name[0].toUpperCase()}<span class="odot" style="position:absolute;bottom:2px;right:2px;width:9px;height:9px;border-radius:50%;background:var(--green);border:2px solid var(--s1)"></span></div>
-      <h4>${esc(u.name)}</h4>
-      <div class="rm">${flag(u.country)} ${esc(u.city)}, ${esc(u.state)}</div>
-      <div class="rm">${u.gender==='male'?'👨':'👩'} ${u.age}</div>
-      <span class="tag ${TAGS[u.country]||'t-in'}">${u.country}</span>
-      <span class="rl">💬 Start Chat</span>
-    </div>
-  `).join('')+'</div>';
+  res.map(u=>`<div class="rc" onclick="openChatFS('${u.uid}')"><div class="bav" style="background:${colorFor(u.uid)}22;color:${colorFor(u.uid)};position:relative;">${u.name[0]}<span style="position:absolute;bottom:2px;right:2px;width:9px;height:9px;border-radius:50%;background:var(--green);border:2px solid var(--s1)"></span></div><h4>${esc(u.name)}</h4><div class="rm">${flag(u.country)} ${esc(u.city)}, ${esc(u.state)}</div><div class="rm">${u.gender==='male'?'👨':'👩'} ${u.age}</div><span class="tag ${TAGS[u.country]||'t-in'}">${u.country}</span><span class="rl">💬 Start Chat</span></div>`).join('')+'</div>';
 };
-window.openChatFromSearch=(uid)=>{ const u=onlineUsers[uid]; if(u) openChat(u); };
+window.openChatFS=(uid)=>{ const u=onlineUsers[uid]; if(u) openChat(u); };
 window.clrSearch=()=>{ ['s-ct','s-st','s-ci','s-gn'].forEach(id=>{ const e=document.getElementById(id); if(e) e.value=''; }); document.getElementById('sres').innerHTML=''; };
 
-// ─── GROUPS ───
+// ── GROUPS (FIX 3) ──
 function renderGroups(){
-  const el=document.getElementById('glist');
-  el.innerHTML=localGroups.map(g=>`
+  document.getElementById('glist').innerHTML=localGroups.map(g=>`
     <div class="gcard">
       <div class="gi">${g.icon}</div>
       <h4>${esc(g.name)}</h4>
       <div class="gm">${flag(g.country)} ${esc(g.city)}, ${esc(g.state)}</div>
       <div class="gm">🏷️ ${esc(g.tag)} &bull; 👥 ${g.members}</div>
-      <button class="gjoin" onclick="joinGrp('${g.id}',this)">Join Group</button>
+      <div class="gbtn-row">
+        ${!g.joined
+          ? `<button class="gjoin" onclick="joinGrp('${g.id}',this)">Join Group</button>`
+          : `<button class="gjoin" disabled>✅ Joined</button><button class="genter" onclick="enterGroup('${g.id}')">💬 Enter Chat</button>`
+        }
+      </div>
     </div>
   `).join('');
 }
+
 window.joinGrp=(id,btn)=>{
   const g=localGroups.find(x=>x.id===id); if(!g) return;
-  g.members++;
-  btn.textContent='✅ Joined'; btn.disabled=true;
-  btn.style.cssText='background:rgba(34,197,94,.1);color:#4ade80;border-color:rgba(34,197,94,.25);';
-  toast(`✅ Joined "${g.name}"!`);
+  g.members++; g.joined=true;
+  toast(`✅ Joined "${g.name}"! Click "Enter Chat" to start.`,'var(--green)');
+  renderGroups();
 };
+
+// FIX 3: Enter group chat
+window.enterGroup=(id)=>{
+  const g=localGroups.find(x=>x.id===id); if(!g) return;
+  activeGID=id;
+  document.getElementById('gv-list-screen').style.display='none';
+  document.getElementById('gchat-screen').classList.add('on');
+  document.getElementById('gcp-icon').textContent=g.icon;
+  document.getElementById('gcp-nm').textContent=g.name;
+  document.getElementById('gcp-meta').innerHTML=`${flag(g.country)} ${esc(g.city)}, ${esc(g.state)} &bull; 🏷️ ${esc(g.tag)}`;
+  loadGroupChat(id,g);
+};
+
+// FIX 3 back: return to group list
+window.closeGroupChat=()=>{
+  activeGID=null;
+  if(groupListener){ off(ref(db,'groupchats/x'),'value',groupListener); groupListener=null; }
+  document.getElementById('gchat-screen').classList.remove('on');
+  document.getElementById('gv-list-screen').style.display='';
+  document.getElementById('gmsgs').innerHTML='';
+};
+
+function loadGroupChat(gid,g){
+  const el=document.getElementById('gmsgs');
+  el.innerHTML=`<div class="sys-msg"><span>Welcome to ${esc(g.name)} 🎉</span></div>`;
+  const gRef=ref(db,'groupchats/'+gid);
+  if(groupListener) off(gRef,'value',groupListener);
+  let first=true, prev=0;
+  groupListener=onValue(gRef,snap=>{
+    el.innerHTML=`<div class="sys-msg"><span>Welcome to ${esc(g.name)} 🎉</span></div>`;
+    let count=0; const members=new Set([ME.name]);
+    snap.forEach(c=>{ const m=c.val(); appendMsg(m,el,false); members.add(m.senderName); count++; });
+    document.getElementById('gmem-bar').textContent=`👥 ${members.size} member${members.size!==1?'s':''} active: ${[...members].join(', ')}`;
+    // FIX 2: Group notifications
+    if(!first&&count>prev){
+      const all=snap.val();
+      if(all){
+        const last=all[Object.keys(all).pop()];
+        if(last.from!==ME.uid){
+          playTing();
+          showNotif(last.senderName,last.from,`[${g.name}] ${last.text}`,()=>enterGroup(gid));
+        }
+      }
+    }
+    prev=count; first=false;
+    el.scrollTop=el.scrollHeight;
+  });
+}
+
+window.sendGroupMsg=async()=>{
+  const inp=document.getElementById('gminp'), text=inp.value.trim();
+  if(!text||!activeGID) return; inp.value='';
+  await push(ref(db,'groupchats/'+activeGID),{from:ME.uid,senderName:ME.name,text,time:ftime(),ts:serverTimestamp()});
+};
+
 window.createGroup=()=>{
   const nm=document.getElementById('g-nm').value.trim();
   const tg=document.getElementById('g-tg').value.trim()||'General';
@@ -917,41 +805,41 @@ window.createGroup=()=>{
   const st=document.getElementById('g-st').value;
   const ci=document.getElementById('g-ci').value;
   const ic=document.getElementById('g-ic').value;
-  if(!nm){ toast('⚠️ Group name required!'); return; }
-  if(!st||!ci){ toast('⚠️ Select state & city!'); return; }
-  localGroups.unshift({id:'g'+Date.now(),name:nm,country:ct,state:st,city:ci,tag:tg,icon:ic,members:1});
+  if(!nm){ toast('⚠️ Group name required!','var(--orange)'); return; }
+  if(!st||!ci){ toast('⚠️ Select state & city!','var(--orange)'); return; }
+  localGroups.unshift({id:'g'+Date.now(),name:nm,country:ct,state:st,city:ci,tag:tg,icon:ic,members:1,joined:true});
   renderGroups();
-  document.getElementById('g-nm').value='';
-  document.getElementById('g-tg').value='';
-  toast(`🎉 Group "${nm}" created!`);
+  document.getElementById('g-nm').value=''; document.getElementById('g-tg').value='';
+  toast(`🎉 "${nm}" created! Click "Enter Chat" to start.`,'var(--green)');
 };
 
-// ─── VIEW SWITCHER ───
+// ── VIEW SWITCHER ──
 window.sv=(view,btn)=>{
   const map={chat:'v-chat',search:'v-search',groups:'v-groups'};
   document.querySelectorAll('.view').forEach(v=>v.classList.remove('on'));
   document.getElementById(map[view])?.classList.add('on');
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
-  btn?.classList.add('on');
+  if(btn) btn.classList.add('on');
 };
 
-// ─── EMOJI ───
-function initEmoji(){
-  const ep=document.getElementById('epick');
-  EMOJIS.forEach(e=>{ const s=document.createElement('span'); s.textContent=e; s.onclick=()=>{ document.getElementById('minp').value+=e; document.getElementById('minp').focus(); }; ep.appendChild(s); });
+// ── EMOJI ──
+function initEmoji(pickId, inputId){
+  const ep=document.getElementById(pickId); if(!ep) return;
+  EMOJIS.forEach(e=>{ const s=document.createElement('span'); s.textContent=e; s.onclick=()=>{ const i=document.getElementById(inputId); i.value+=e; i.focus(); }; ep.appendChild(s); });
 }
-window.toggleEP=()=>document.getElementById('epick').classList.toggle('hide');
-document.addEventListener('click',e=>{ const ep=document.getElementById('epick'); if(ep&&!ep.contains(e.target)&&!e.target.classList.contains('ebtn')) ep.classList.add('hide'); });
+window.toggleEP=(id)=>document.getElementById(id)?.classList.toggle('hide');
+document.addEventListener('click',e=>{
+  ['epick','gepick'].forEach(id=>{ const ep=document.getElementById(id); if(ep&&!ep.contains(e.target)&&!e.target.classList.contains('ebtn')) ep.classList.add('hide'); });
+});
 
-// ─── INIT LANDING ───
+// ── LANDING INIT ──
 upStates('l');
-// Pre-select Rajasthan / Kota
 setTimeout(()=>{
   const ls=document.getElementById('l-st');
   for(let o of ls.options) if(o.value==='Rajasthan'){ls.value='Rajasthan';break;}
   upCities('l');
-  setTimeout(()=>{ const lc=document.getElementById('l-ci'); for(let o of lc.options) if(o.value==='Kota'){lc.value='Kota';break;} },50);
-},50);
+  setTimeout(()=>{ const lc=document.getElementById('l-ci'); for(let o of lc.options) if(o.value==='Kota'){lc.value='Kota';break;} },60);
+},60);
 </script>
 </body>
 </html>
