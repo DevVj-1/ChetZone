@@ -6,12 +6,12 @@
 <title>ChatZone — Free Chat, South Asia</title>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
-:root {
-  --bg:#07090f; --s1:#0d1117; --s2:#161b27; --s3:#1c2333;
-  --border:#1e2d45; --border2:#243349;
-  --accent:#3b82f6; --accent-glow:rgba(59,130,246,.15);
-  --green:#22c55e; --orange:#f97316; --pink:#ec4899; --purple:#8b5cf6;
-  --text:#f0f4ff; --muted:#5a6a85;
+:root{
+  --bg:#07090f;--s1:#0d1117;--s2:#161b27;--s3:#1c2333;
+  --border:#1e2d45;--border2:#243349;
+  --accent:#3b82f6;--ag:rgba(59,130,246,.15);
+  --green:#22c55e;--orange:#f97316;--pink:#ec4899;--purple:#8b5cf6;
+  --text:#f0f4ff;--muted:#5a6a85;
   --font:'Plus Jakarta Sans',sans-serif;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -35,7 +35,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);display:flex
 .field{margin-bottom:12px;}
 .field label{display:block;font-size:.72rem;color:var(--muted);font-weight:600;letter-spacing:.4px;text-transform:uppercase;margin-bottom:5px;}
 .field input,.field select{width:100%;padding:10px 13px;background:var(--s2);border:1px solid var(--border);border-radius:10px;color:var(--text);font-family:var(--font);font-size:.87rem;outline:none;transition:.2s;}
-.field input:focus,.field select:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow);}
+.field input:focus,.field select:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--ag);}
 .field select option{background:var(--s2);}
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
 .gender-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
@@ -53,23 +53,19 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);display:flex
 /* APP */
 #app{flex:1;display:none;flex-direction:column;height:100%;overflow:hidden;}
 #app.show{display:flex;}
-
-/* TOPBAR */
 .topbar{height:52px;background:var(--s1);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 12px;gap:10px;flex-shrink:0;z-index:50;}
 .tlogo{font-weight:800;font-size:1rem;background:linear-gradient(135deg,#60a5fa,#c084fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;white-space:nowrap;}
 .tab-bar{display:flex;gap:2px;flex:1;justify-content:center;}
 .tab{padding:6px 12px;border-radius:8px;border:none;background:transparent;color:var(--muted);font-family:var(--font);font-size:.8rem;font-weight:600;cursor:pointer;transition:.15s;white-space:nowrap;position:relative;}
 .tab:hover,.tab.on{background:var(--s2);color:var(--text);}
 .tab.on{color:#93c5fd;}
-.tab .nbadge{position:absolute;top:3px;right:3px;width:7px;height:7px;border-radius:50%;background:var(--orange);display:none;}
-.tab .nbadge.show{display:block;}
+.tab .nb{position:absolute;top:3px;right:3px;width:7px;height:7px;border-radius:50%;background:var(--orange);display:none;}
+.tab .nb.show{display:block;}
 .me-chip{display:flex;align-items:center;gap:7px;background:var(--s2);padding:4px 10px 4px 4px;border-radius:20px;flex-shrink:0;}
 .me-chip .av{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;}
 .me-chip span{font-size:.78rem;font-weight:600;max-width:90px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-.online-dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:blink 2s infinite;}
+.odot-top{width:7px;height:7px;border-radius:50%;background:var(--green);animation:blink 2s infinite;}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
-
-/* LAYOUT */
 .layout{flex:1;display:grid;grid-template-columns:270px 1fr;overflow:hidden;}
 @media(max-width:640px){.layout{grid-template-columns:1fr;}.sidebar{display:none;}}
 
@@ -89,17 +85,19 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);display:flex
 .uitem.on{background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.12);}
 .uav{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700;flex-shrink:0;position:relative;}
 .odot{position:absolute;bottom:0;right:0;width:9px;height:9px;border-radius:50%;background:var(--green);border:2px solid var(--s1);}
+.bot-badge{position:absolute;bottom:0;right:0;width:14px;height:14px;border-radius:50%;background:var(--purple);border:2px solid var(--s1);display:flex;align-items:center;justify-content:center;font-size:.45rem;color:#fff;font-weight:700;}
 .uinfo{flex:1;min-width:0;}
 .uname{font-size:.83rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .umeta{font-size:.7rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:1px;}
 .unread-pill{min-width:18px;height:18px;border-radius:9px;background:var(--orange);color:#fff;font-size:.62rem;font-weight:700;display:flex;align-items:center;justify-content:center;padding:0 4px;}
+.bot-tag{font-size:.6rem;background:rgba(139,92,246,.15);color:#a78bfa;border:1px solid rgba(139,92,246,.2);border-radius:4px;padding:1px 5px;font-weight:600;margin-left:4px;}
 
 /* VIEWS */
 .view{display:none;flex-direction:column;height:100%;overflow:hidden;}
 .view.on{display:flex;}
 
-/* BACK BUTTON */
-.back-btn{display:flex;align-items:center;gap:5px;padding:6px 12px;background:var(--s2);border:1px solid var(--border);border-radius:8px;color:var(--muted);font-family:var(--font);font-size:.78rem;font-weight:600;cursor:pointer;transition:.15s;flex-shrink:0;white-space:nowrap;}
+/* BACK BTN */
+.back-btn{display:flex;align-items:center;gap:5px;padding:6px 12px;background:var(--s2);border:1px solid var(--border);border-radius:8px;color:var(--muted);font-family:var(--font);font-size:.78rem;font-weight:600;cursor:pointer;transition:.15s;flex-shrink:0;}
 .back-btn:hover{border-color:var(--accent);color:var(--text);}
 
 /* CHAT */
@@ -108,9 +106,9 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);display:flex
 .no-chat h3{font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:6px;}
 .no-chat p{font-size:.83rem;line-height:1.7;max-width:320px;}
 .chat-head{padding:10px 12px;border-bottom:1px solid var(--border);background:var(--s1);display:flex;align-items:center;gap:8px;flex-shrink:0;}
-.chat-head .chi{flex:1;min-width:0;}
-.chat-head .chi h3{font-size:.9rem;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.chat-head .chi p{font-size:.7rem;color:var(--muted);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.chi{flex:1;min-width:0;}
+.chi h3{font-size:.9rem;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:flex;align-items:center;gap:6px;}
+.chi p{font-size:.7rem;color:var(--muted);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .hbtn{width:32px;height:32px;border-radius:8px;border:1px solid var(--border);background:var(--s2);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.85rem;transition:.15s;}
 .hbtn:hover{border-color:var(--accent);}
 .msgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px;}
@@ -119,8 +117,8 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);display:flex
 @keyframes popIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 .mav{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;flex-shrink:0;align-self:flex-end;}
 .mc{max-width:68%;}
-.msender{font-size:.67rem;color:var(--muted);margin-bottom:3px;font-weight:500;}
-.msg-row.me .msender{text-align:right;}
+.msender{font-size:.67rem;color:var(--muted);margin-bottom:3px;font-weight:500;display:flex;align-items:center;gap:4px;}
+.msg-row.me .msender{justify-content:flex-end;}
 .mb-wrap{position:relative;}
 .mb{padding:9px 13px;border-radius:14px;font-size:.855rem;line-height:1.55;word-break:break-word;}
 .msg-row:not(.me) .mb{background:var(--s2);border:1px solid var(--border);border-bottom-left-radius:3px;}
@@ -132,8 +130,13 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);display:flex
 .msg-row.me .mtime{text-align:right;}
 .sys-msg{text-align:center;padding:2px 0;}
 .sys-msg span{background:var(--s2);border:1px solid var(--border);border-radius:16px;padding:3px 12px;font-size:.68rem;color:var(--muted);}
+.typing-row{display:flex;align-items:center;gap:8px;padding:4px 14px;font-size:.72rem;color:var(--muted);}
+.typing-dots span{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--muted);animation:tdot 1.2s infinite;margin-right:3px;}
+.typing-dots span:nth-child(2){animation-delay:.2s;}
+.typing-dots span:nth-child(3){animation-delay:.4s;}
+@keyframes tdot{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-5px)}}
 
-/* INPUT */
+/* INPUT — fixed Enter key works natively */
 .inp-area{padding:10px 12px;border-top:1px solid var(--border);background:var(--s1);position:relative;flex-shrink:0;}
 .ep{position:absolute;bottom:68px;left:12px;background:var(--s1);border:1px solid var(--border);border-radius:14px;padding:10px;display:grid;grid-template-columns:repeat(8,1fr);gap:3px;z-index:100;box-shadow:0 8px 40px rgba(0,0,0,.5);}
 .ep.hide{display:none;}
@@ -141,7 +144,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);display:flex
 .ep span:hover{background:var(--s2);}
 .irow{display:flex;gap:8px;align-items:center;}
 .iwrap{flex:1;background:var(--s2);border:1px solid var(--border);border-radius:12px;padding:9px 12px;display:flex;align-items:center;gap:8px;transition:.2s;}
-.iwrap:focus-within{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow);}
+.iwrap:focus-within{border-color:var(--accent);box-shadow:0 0 0 3px var(--ag);}
 .iwrap input{flex:1;border:none;background:transparent;color:var(--text);font-family:var(--font);font-size:.87rem;outline:none;}
 .ebtn{font-size:1.1rem;cursor:pointer;opacity:.5;transition:.15s;background:none;border:none;line-height:1;}
 .ebtn:hover{opacity:1;}
@@ -165,7 +168,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);display:flex
 .rc .bav{width:52px;height:52px;border-radius:50%;margin:0 auto 9px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;font-weight:700;position:relative;}
 .rc h4{font-size:.87rem;font-weight:700;}
 .rc .rm{font-size:.72rem;color:var(--muted);margin-top:3px;}
-.rc .rl{margin-top:9px;display:block;padding:6px;background:var(--accent-glow);border:1px solid rgba(59,130,246,.2);border-radius:8px;color:#93c5fd;font-size:.75rem;font-weight:600;}
+.rc .rl{margin-top:9px;display:block;padding:6px;background:var(--ag);border:1px solid rgba(59,130,246,.2);border-radius:8px;color:#93c5fd;font-size:.75rem;font-weight:600;}
 .tag{display:inline-block;padding:2px 7px;border-radius:4px;font-size:.66rem;font-weight:700;font-family:'JetBrains Mono',monospace;margin-top:4px;}
 .t-in{background:rgba(34,197,94,.1);color:#4ade80;}
 .t-bd{background:rgba(249,115,22,.1);color:#fb923c;}
@@ -191,8 +194,6 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);display:flex
 .gjoin:disabled{opacity:.6;cursor:default;}
 .genter{flex:1;padding:7px 4px;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);border-radius:8px;color:#4ade80;font-size:.75rem;font-weight:600;cursor:pointer;transition:.15s;font-family:var(--font);}
 .genter:hover{background:rgba(34,197,94,.15);}
-
-/* GROUP CHAT PANEL */
 .gchat-wrap{display:none;flex-direction:column;height:100%;}
 .gchat-wrap.on{display:flex;}
 .gchat-head{padding:10px 12px;border-bottom:1px solid var(--border);background:var(--s1);display:flex;align-items:center;gap:8px;flex-shrink:0;}
@@ -201,7 +202,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);display:flex
 .gchat-head .gchi p{font-size:.7rem;color:var(--muted);margin-top:1px;}
 .gmem-bar{padding:7px 14px;background:var(--s2);border-bottom:1px solid var(--border);font-size:.7rem;color:var(--muted);flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 
-/* NOTIFICATION POPUP */
+/* NOTIFICATION */
 .notif{position:fixed;top:62px;right:14px;z-index:9998;background:var(--s1);border:1px solid var(--border);border-left:3px solid var(--green);border-radius:12px;padding:12px 14px;max-width:290px;display:flex;align-items:center;gap:10px;box-shadow:0 8px 40px rgba(0,0,0,.5);animation:nslide .3s ease;cursor:pointer;}
 @keyframes nslide{from{transform:translateX(100px);opacity:0}to{transform:translateX(0);opacity:1}}
 .notif .nav2{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.82rem;font-weight:700;flex-shrink:0;}
@@ -260,8 +261,8 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);display:flex
     </div>
     <div class="feat-row">
       <div class="feat"><div class="ico">⚡</div><h4>Real Users</h4><p>Chat with real people online now</p></div>
+      <div class="feat"><div class="ico">🤖</div><h4>Smart Bots</h4><p>Chatbots active when no one is online</p></div>
       <div class="feat"><div class="ico">🔔</div><h4>Notifications</h4><p>Sound alert for every new message</p></div>
-      <div class="feat"><div class="ico">🔍</div><h4>City Search</h4><p>Find people from your exact city</p></div>
       <div class="feat"><div class="ico">👥</div><h4>Group Chat</h4><p>Create & chat in city groups</p></div>
     </div>
   </div>
@@ -272,14 +273,14 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);display:flex
   <nav class="topbar">
     <div class="tlogo">💬 ChatZone</div>
     <div class="tab-bar">
-      <button class="tab on" id="tab-chat" onclick="sv('chat',this)">💬 Chat<span class="nbadge" id="badge-chat"></span></button>
+      <button class="tab on" id="tab-chat" onclick="sv('chat',this)">💬 Chat<span class="nb" id="badge-chat"></span></button>
       <button class="tab" id="tab-search" onclick="sv('search',this)">🔍 Find</button>
-      <button class="tab" id="tab-groups" onclick="sv('groups',this)">👥 Groups<span class="nbadge" id="badge-groups"></span></button>
+      <button class="tab" id="tab-groups" onclick="sv('groups',this)">👥 Groups</button>
     </div>
     <div class="me-chip">
       <div class="av" id="me-av"></div>
       <span id="me-nm"></span>
-      <div class="online-dot"></div>
+      <div class="odot-top"></div>
     </div>
   </nav>
 
@@ -315,11 +316,10 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);display:flex
         <div id="no-chat" class="no-chat">
           <div class="big">👋</div>
           <h3>Welcome to ChatZone!</h3>
-          <p>Pick someone from the list to chat, or use <strong>Find</strong> to search by your city.</p>
+          <p>Pick someone from the list to start chatting, or try one of the <strong>🤖 bots</strong> if no one is online yet!</p>
         </div>
         <div id="chat-panel" style="display:none;flex-direction:column;height:100%;">
           <div class="chat-head">
-            <!-- FIX 1: BACK BUTTON -->
             <button class="back-btn" onclick="closeChat()">&#8592; Back</button>
             <div id="cp-av" style="width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.82rem;font-weight:700;flex-shrink:0;"></div>
             <div class="chi">
@@ -328,16 +328,21 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);display:flex
             </div>
             <div style="display:flex;gap:6px;flex-shrink:0;">
               <button class="hbtn" title="Copy last message" onclick="copyLast('msgs')">📋</button>
-              <button class="hbtn" title="Report user" onclick="toast('🚩 Reported. Thank you!')">🚩</button>
+              <button class="hbtn" title="Report" onclick="toast('🚩 Reported. Thank you!')">🚩</button>
             </div>
           </div>
           <div class="msgs" id="msgs"></div>
+          <div id="typing-indicator" class="typing-row" style="display:none;">
+            <span id="typing-name" style="font-weight:600;color:var(--text);font-size:.78rem;"></span>
+            <div class="typing-dots"><span></span><span></span><span></span></div>
+          </div>
           <div class="inp-area">
             <div class="ep hide" id="epick"></div>
             <div class="irow">
               <div class="iwrap">
                 <button class="ebtn" onclick="toggleEP('epick')">😊</button>
-                <input type="text" id="minp" placeholder="Type a message…" onkeydown="if(event.key==='Enter')sendMsg()"/>
+                <!-- ENTER KEY FIX: using addEventListener in JS, not inline -->
+                <input type="text" id="minp" placeholder="Type a message and press Enter…"/>
               </div>
               <button class="sbtn" onclick="sendMsg()">&#10148;</button>
             </div>
@@ -382,7 +387,6 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);display:flex
 
       <!-- GROUPS VIEW -->
       <div class="view" id="v-groups">
-        <!-- Group list -->
         <div class="gv-list" id="gv-list-screen">
           <h2>👥 City Groups</h2>
           <p>Create or join a group — then enter to chat with everyone inside</p>
@@ -410,8 +414,6 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);display:flex
           <h3 style="font-size:.87rem;font-weight:700;margin-bottom:10px;">Active Groups</h3>
           <div class="gl" id="glist"></div>
         </div>
-
-        <!-- FIX 3: Group CHAT screen with back button -->
         <div class="gchat-wrap" id="gchat-screen">
           <div class="gchat-head">
             <button class="back-btn" onclick="closeGroupChat()">&#8592; Back</button>
@@ -420,9 +422,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);display:flex
               <h3 id="gcp-nm">Group</h3>
               <p id="gcp-meta">—</p>
             </div>
-            <div style="display:flex;gap:6px;flex-shrink:0;">
-              <button class="hbtn" title="Copy last message" onclick="copyLast('gmsgs')">📋</button>
-            </div>
+            <button class="hbtn" title="Copy last message" onclick="copyLast('gmsgs')">📋</button>
           </div>
           <div class="gmem-bar" id="gmem-bar">👥 Loading…</div>
           <div class="msgs" id="gmsgs"></div>
@@ -431,7 +431,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);display:flex
             <div class="irow">
               <div class="iwrap">
                 <button class="ebtn" onclick="toggleEP('gepick')">😊</button>
-                <input type="text" id="gminp" placeholder="Message the group…" onkeydown="if(event.key==='Enter')sendGroupMsg()"/>
+                <input type="text" id="gminp" placeholder="Message the group and press Enter…"/>
               </div>
               <button class="sbtn" onclick="sendGroupMsg()">&#10148;</button>
             </div>
@@ -447,6 +447,9 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);display:flex
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getDatabase, ref, push, set, onValue, onDisconnect, serverTimestamp, off } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
+// ════════════════════════════════════════
+//  ✅ YOUR FIREBASE CONFIG (already filled)
+// ════════════════════════════════════════
 const FIREBASE_CONFIG = {
   apiKey: "AIzaSyDJnqPz4NqxVXPcZYyRooOXuqWPltis9dQ",
   authDomain: "chat-zone-2955c.firebaseapp.com",
@@ -458,6 +461,174 @@ const FIREBASE_CONFIG = {
   measurementId: "G-BQBBJKRTQZ"
 };
 
+// ════════════════════════════════════════
+//  SMART CHATBOTS — keyword-aware, context-remembering,
+//  human-like typing delay, varied personalities
+// ════════════════════════════════════════
+const BOTS = [
+  {
+    uid:'bot_priya', name:'Priya_Jaipur', gender:'female', country:'India',
+    state:'Rajasthan', city:'Jaipur', age:'21', color:'#f472b6', isBot:true,
+    persona:'friendly_girl',
+    mood: 'happy',
+    topics: ['studies','college','food','music','Jaipur','Rajasthan','fashion']
+  },
+  {
+    uid:'bot_arjun', name:'Arjun_Delhi', gender:'male', country:'India',
+    state:'Delhi', city:'New Delhi', age:'23', color:'#fb923c', isBot:true,
+    persona:'chill_guy',
+    mood: 'chill',
+    topics: ['cricket','tech','movies','food','Delhi','coding','startup']
+  },
+  {
+    uid:'bot_sara', name:'Sara_Dhaka', gender:'female', country:'Bangladesh',
+    state:'Dhaka', city:'Dhaka City', age:'20', color:'#34d399', isBot:true,
+    persona:'curious_girl',
+    mood: 'curious',
+    topics: ['studies','travel','food','culture','Bangladesh','music']
+  },
+  {
+    uid:'bot_ali', name:'Ali_Lahore', gender:'male', country:'Pakistan',
+    state:'Punjab', city:'Lahore', age:'22', color:'#60a5fa', isBot:true,
+    persona:'humor_guy',
+    mood: 'funny',
+    topics: ['cricket','food','college','lahore','humor','friends']
+  }
+];
+
+// Smart reply engine — keyword matching with varied responses
+const BOT_BRAIN = {
+  greetings: {
+    patterns: ['hi','hello','hey','hii','helo','sup','what\'s up','whats up','yo','salam','namaste','namaskar','assalam'],
+    replies: {
+      friendly_girl: ['Heyy! 😊 How are you doing?','Hi hi! 👋 What\'s up?','Heyyy! So nice to see someone here 😄','Hello! Kya haal hai? 😊'],
+      chill_guy: ['Yo! What\'s good?','Hey man! How\'s it going?','What\'s up bro!','Heyyy! Kya scene hai?'],
+      curious_girl: ['Hello there! 👋 How are you?','Hi! Nice to meet you 😊','Hey! Where are you from?'],
+      humor_guy: ['Aye! Finally someone shows up 😂','Hello! Main tha hi yahaan waiting 😅','What\'s up! Baith jao baat karte hain 😄']
+    }
+  },
+  howAreYou: {
+    patterns: ['how are you','how r u','kaise ho','kaisa hai','how\'s you','kya haal','you ok','u ok','how doing'],
+    replies: {
+      friendly_girl: ['I\'m good yaar! Just chilling 😊 What about you?','Pretty good! Been scrolling reels 😂 you?','Doing great! How about you? ☺️'],
+      chill_guy: ['Chillin bro! All good on my end, you?','Pretty chill tbh! What about you man?','Good good! Just vibing, you?'],
+      curious_girl: ['I\'m well thank you! What about yourself?','Good! A bit tired from studies 😅 you?'],
+      humor_guy: ['Alive and surviving 😂 you?','Better now that someone\'s here to talk to 😄 you?']
+    }
+  },
+  name: {
+    patterns: ['your name','whats ur name','what\'s your name','aapka naam','tumhara naam','naam kya hai','tum kaun'],
+    replies: {
+      friendly_girl: ['I\'m Priya! From Jaipur 🌸 You?','Priya here! What\'s your name? 😊'],
+      chill_guy: ['Arjun bhai! Delhi wala 😎 You?','Arjun! And you are? 👋'],
+      curious_girl: ['Sara! From Dhaka 🌿 Nice to meet you! What\'s yours?'],
+      humor_guy: ['Ali! The legend of Lahore 😂 And you?']
+    }
+  },
+  location: {
+    patterns: ['where are you','kahan se','kahan ho','which city','which state','where u from','aap kahan','kon si city','location'],
+    replies: {
+      friendly_girl: ['I\'m from Jaipur, Rajasthan! Pink City 🌸 You?','Jaipur wali hoon! Very beautiful city 😄 where are you from?'],
+      chill_guy: ['Delhi bhai! The capital 😎 kahan se ho tum?','New Delhi! Where are you chatting from?'],
+      curious_girl: ['Dhaka, Bangladesh! 🇧🇩 Very busy city haha. You?'],
+      humor_guy: ['Lahore! City of amazing food 🍛 Where you from?']
+    }
+  },
+  studies: {
+    patterns: ['study','studies','college','university','school','padhai','exam','exams','result','engineering','btech','degree'],
+    replies: {
+      friendly_girl: ['Ohh exams season? I know the pain 😭 which subject?','I\'m in 2nd year college! Commerce. Exams are killing me 😅','Studies ho rahe hain slowly slowly 😂 aur tum?'],
+      chill_guy: ['Bhai studies toh chalti rehti hai 😂 which college?','I did CS from Delhi Uni! Graduated last year. You studying?'],
+      curious_girl: ['I love studying new things! What are you studying?','Ohh which subject is giving you trouble?'],
+      humor_guy: ['Studies aur main? Old enemies 😂 But kar lete hain somehow. You?']
+    }
+  },
+  food: {
+    patterns: ['food','khana','eat','lunch','dinner','breakfast','hungry','bhook','restaurant','biryani','dosa','roti','chai','tea','coffee'],
+    replies: {
+      friendly_girl: ['Omg food talk! My fav topic 😍 Dal baati churma is the best!','Jaipur ki kachori toh best hai yaar! Have you tried it?','I just had chai ☕ so relaxing! What do you like?'],
+      chill_guy: ['Bhai butter chicken and naan — nothing beats it 🍗 You?','Hungry bro? Same! Delhi street food hits different 😄'],
+      curious_girl: ['Bhaat, dal, shutki... Bangladeshi food is amazing! You like spicy food?'],
+      humor_guy: ['Lahore ka khana khaya hai kabhi? Life-changing experience 😂 Nihari, halwa puri...']
+    }
+  },
+  cricket: {
+    patterns: ['cricket','ipl','match','team india','pakistan cricket','kohli','rohit','babar','test match','t20','worldcup','world cup'],
+    replies: {
+      chill_guy: ['Cricket bhai! My religion 😂 Team India all the way! You watching the series?','Kohli in form = India wins. Simple math 😄 You follow cricket?'],
+      humor_guy: ['Pakistan cricket is like a rollercoaster 😂 but we love it! You cricket fan?','Babar Azam is class man! What do you think?'],
+      friendly_girl: ['I don\'t follow cricket much but the World Cup energy was unreal! 🏏'],
+      curious_girl: ['Who is your favourite cricket player? I like the sport but don\'t know much!']
+    }
+  },
+  music: {
+    patterns: ['music','song','songs','listen','band','arijit','bollywood','singer','rap','playlist','spotify','gaana'],
+    replies: {
+      friendly_girl: ['Omg I\'m always listening to Arijit Singh 🎵 his songs are soo good! What do you like?','Bollywood music is my everything 🎶 current fav is Tere Vaaste!'],
+      chill_guy: ['Hip-hop bhai! AP Dhillon, Sidhu... fire stuff 🎵 You?','I vibe to everything from Lo-fi to desi rap 😄'],
+      curious_girl: ['I love music! Lately listening to Rabindra Sangeet and also some K-pop 😅 You?'],
+      humor_guy: ['Coke Studio Pakistan hai na? That\'s art 🎵 Check out Pasoori if you haven\'t!']
+    }
+  },
+  movies: {
+    patterns: ['movie','movies','film','web series','netflix','series','watch','bollywood','hollywood','ott'],
+    replies: {
+      chill_guy: ['Bhai just finished Mirzapur rewatch 😂 Have you seen it?','Sacred Games was wild! What are you watching these days?'],
+      friendly_girl: ['Ohh movie time! I just watched Kal Ho Naa Ho again 😭 Classic!','I love romantic Bollywood movies! What\'s your fav?'],
+      curious_girl: ['I like watching documentaries and dramas! Any suggestions?'],
+      humor_guy: ['Lollywood mein kuch zabardast films aai hain lately 😄 You watch Pakistani content?']
+    }
+  },
+  bye: {
+    patterns: ['bye','goodbye','cya','see you','later','ttyl','ok bye','goodnight','good night','gn','take care','tc'],
+    replies: {
+      friendly_girl: ['Byeee! Take care 😊💕','It was nice talking to you! Come back soon 🌸','Byeee! Have a great day! ☀️'],
+      chill_guy: ['Peace out bro! 👋','Later man! Take care 😎','Byee! Was nice talking 🤙'],
+      curious_girl: ['Goodbye! It was lovely chatting with you 😊','Bye bye! Come back anytime 👋'],
+      humor_guy: ['Chalo jao 😂 Just kidding! Take care yaar! 👋']
+    }
+  },
+  lonely: {
+    patterns: ['alone','lonely','bored','no one','nobody','nothing to do','akela','akelapan','boredom','free time'],
+    replies: {
+      friendly_girl: ['Aww don\'t be bored! I\'m here to chat 😊 Tell me something about yourself!','Same here yaar! Let\'s talk then 😄 What do you like doing in free time?'],
+      chill_guy: ['Bro same 😂 that\'s why I\'m here! What do you usually do when bored?','Everyone\'s gone offline? Happens! Let\'s talk then 😄'],
+      curious_girl: ['Oh I understand! Free time can feel empty. Tell me about yourself? 😊'],
+      humor_guy: ['Welcome to the "bored at home" club 😂 I\'m the president here!']
+    }
+  },
+  age: {
+    patterns: ['how old','your age','tumhari umar','kitne saal','age kya hai','aap kitne'],
+    replies: {
+      friendly_girl: ['I\'m 21! Just finished 2nd year college 😊 How old are you?'],
+      chill_guy: ['23 bhai! Just graduated. You?'],
+      curious_girl: ['I\'m 20! Studying right now. What about you?'],
+      humor_guy: ['22! Old enough to chat, young enough to be confused 😂 You?']
+    }
+  },
+  default: {
+    friendly_girl: ['That\'s interesting! Tell me more 😊','Ohh really? I want to know more about that!','Haha that\'s so relatable 😄','Yeah yaar! Same feeling sometimes 😅'],
+    chill_guy: ['Interesting bhai! Go on...','Haha facts man 😂','That\'s actually pretty cool ngl','Makes sense bro! What else?'],
+    curious_girl: ['Oh interesting! Can you tell me more?','Really? That\'s fascinating! 🤔','I hadn\'t thought of it that way!','Hmm interesting perspective!'],
+    humor_guy: ['Haha bhai zabardast 😂','Yaar sach mein 😄 Life is something else!','Ahahaha same situation meri bhi 😅','Okay okay I see what you mean 😄']
+  }
+};
+
+function getBotReply(bot, userMsg) {
+  const msg = userMsg.toLowerCase().trim();
+  for (const [topic, data] of Object.entries(BOT_BRAIN)) {
+    if (topic === 'default') continue;
+    if (data.patterns && data.patterns.some(p => msg.includes(p))) {
+      const pool = data.replies[bot.persona] || data.replies['chill_guy'];
+      return pool[Math.floor(Math.random() * pool.length)];
+    }
+  }
+  // Default varied response
+  const pool = BOT_BRAIN.default[bot.persona];
+  return pool[Math.floor(Math.random() * pool.length)];
+}
+
+// ════════ GEO DATA ════════
 const GEO = {
   India:{"Rajasthan":["Jaipur","Jodhpur","Kota","Udaipur","Ajmer","Bikaner","Alwar","Sikar","Bharatpur","Pali","Chittorgarh","Sri Ganganagar"],"Uttar Pradesh":["Lucknow","Kanpur","Varanasi","Agra","Prayagraj","Meerut","Ghaziabad","Noida","Mathura","Aligarh","Bareilly"],"Maharashtra":["Mumbai","Pune","Nagpur","Nashik","Aurangabad","Solapur","Thane","Navi Mumbai","Amravati"],"Delhi":["New Delhi","Dwarka","Rohini","Pitampura","Janakpuri","Saket","Laxmi Nagar","Karol Bagh"],"West Bengal":["Kolkata","Howrah","Durgapur","Asansol","Siliguri","Bardhaman"],"Karnataka":["Bengaluru","Mysuru","Hubli","Mangaluru","Belagavi","Udupi"],"Gujarat":["Ahmedabad","Surat","Vadodara","Rajkot","Bhavnagar","Gandhinagar"],"Bihar":["Patna","Gaya","Bhagalpur","Muzaffarpur","Purnia","Darbhanga"],"Tamil Nadu":["Chennai","Coimbatore","Madurai","Tiruchirappalli","Salem","Vellore"],"Telangana":["Hyderabad","Warangal","Nizamabad","Karimnagar","Secunderabad"],"Punjab":["Ludhiana","Amritsar","Jalandhar","Patiala","Bathinda","Mohali"],"Haryana":["Faridabad","Gurugram","Rohtak","Panipat","Hisar","Karnal"],"Madhya Pradesh":["Bhopal","Indore","Jabalpur","Gwalior","Ujjain","Sagar"],"Odisha":["Bhubaneswar","Cuttack","Rourkela","Berhampur","Sambalpur"],"Jharkhand":["Ranchi","Jamshedpur","Dhanbad","Bokaro"]},
   Bangladesh:{"Dhaka":["Dhaka City","Narayanganj","Gazipur","Narsingdi","Faridpur"],"Chittagong":["Chittagong City","Cox's Bazar","Comilla","Noakhali","Feni"],"Rajshahi":["Rajshahi City","Bogura","Pabna","Sirajganj","Naogaon"],"Khulna":["Khulna City","Bagerhat","Satkhira","Jessore","Kushtia"],"Sylhet":["Sylhet City","Moulvibazar","Habiganj","Sunamganj"],"Barisal":["Barisal City","Patuakhali","Bhola"],"Mymensingh":["Mymensingh City","Jamalpur","Netrokona"]},
@@ -472,8 +643,10 @@ const EMOJIS=['😀','😂','🥰','😎','🤔','😅','🎉','👍','❤️','
 
 let db, ME=null, selGender='male';
 let onlineUsers={}, activeUID=null, activeGID=null;
-let convListeners={}, groupListener=null;
-let unreadCounts={};
+let convListeners={}, groupListener=null, unreadCounts={};
+let activeBotUID=null, botTypingTimeout=null;
+let botConversations={}; // local bot chats (no Firebase needed)
+
 let localGroups=[
   {id:'g1',name:'Kota Chatters',country:'India',state:'Rajasthan',city:'Kota',tag:'Education',icon:'🎓',members:42,joined:false},
   {id:'g2',name:'Jaipur Pinkcity',country:'India',state:'Rajasthan',city:'Jaipur',tag:'Culture',icon:'🏙️',members:89,joined:false},
@@ -483,7 +656,7 @@ let localGroups=[
   {id:'g6',name:'Kathmandu Crew',country:'Nepal',state:'Bagmati',city:'Kathmandu',tag:'Memes',icon:'🎮',members:58,joined:false},
 ];
 
-// ── AUDIO (FIX 2) ──
+// ── AUDIO ──
 let audioCtx=null;
 function ensureAudio(){ try{ if(!audioCtx) audioCtx=new(window.AudioContext||window.webkitAudioContext)(); }catch(e){} }
 function playTing(){
@@ -503,10 +676,10 @@ function playTing(){
 // ── UTILS ──
 window.toast=(msg,col='var(--accent)')=>{ const t=document.createElement('div'); t.className='toast'; t.textContent=msg; t.style.borderLeftColor=col; document.body.appendChild(t); setTimeout(()=>t.remove(),3000); };
 
-function showNotif(senderName, senderUid, text, onClick){
-  const col=colorFor(senderUid);
+function showNotif(name, uid, text, onClick){
+  const col=colorFor(uid);
   const n=document.createElement('div'); n.className='notif';
-  n.innerHTML=`<div class="nav2" style="background:${col}22;color:${col}">${senderName[0].toUpperCase()}</div><div class="ntxt"><div class="nn">${esc(senderName)}</div><div class="nm">${esc(text)}</div></div><button class="nx" onclick="this.parentElement.remove();event.stopPropagation()">✕</button>`;
+  n.innerHTML=`<div class="nav2" style="background:${col}22;color:${col}">${name[0].toUpperCase()}</div><div class="ntxt"><div class="nn">${esc(name)}</div><div class="nm">${esc(text)}</div></div><button class="nx" onclick="this.parentElement.remove();event.stopPropagation()">✕</button>`;
   n.onclick=(e)=>{ if(e.target.classList.contains('nx')) return; n.remove(); if(onClick) onClick(); };
   document.body.appendChild(n);
   setTimeout(()=>{ if(n.parentElement) n.remove(); },5000);
@@ -516,6 +689,7 @@ function ftime(){ const d=new Date(); return d.getHours().toString().padStart(2,
 function colorFor(uid){ let h=0; for(let i=0;i<uid.length;i++) h=(h+uid.charCodeAt(i))%COLORS.length; return COLORS[h]; }
 function esc(t){ return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 function flag(c){ return FLAGS[c]||'🌏'; }
+function randInt(a,b){ return Math.floor(Math.random()*(b-a+1))+a; }
 
 // ── GEO ──
 function upStates(p){
@@ -526,7 +700,6 @@ function upStates(p){
   upCities(p);
 }
 window.upStates=upStates;
-
 function upCities(p){
   const cEl=document.getElementById(p+'-ct'), sEl=document.getElementById(p+'-st'), ciEl=document.getElementById(p+'-ci');
   if(!cEl||!sEl||!ciEl) return;
@@ -578,24 +751,64 @@ function initApp(){
   upStates('g');
   renderGroups();
   listenOnline();
+  setupEnterKeys(); // ← ENTER KEY FIX
   document.addEventListener('click',()=>ensureAudio(),{once:true});
+}
+
+// ════════════════════════════
+//  ✅ ENTER KEY FIX
+//  Properly binds keydown using addEventListener
+//  so pressing Enter sends message without clicking button
+// ════════════════════════════
+function setupEnterKeys(){
+  document.getElementById('minp').addEventListener('keydown', e=>{
+    if(e.key==='Enter' && !e.shiftKey){ e.preventDefault(); sendMsg(); }
+  });
+  document.getElementById('gminp').addEventListener('keydown', e=>{
+    if(e.key==='Enter' && !e.shiftKey){ e.preventDefault(); sendGroupMsg(); }
+  });
 }
 
 function listenOnline(){
   onValue(ref(db,'presence'),snap=>{
     onlineUsers={};
     snap.forEach(c=>{ const u=c.val(); if(u&&u.uid&&u.uid!==ME.uid) onlineUsers[u.uid]=u; });
-    renderSidebar(Object.values(onlineUsers));
+    renderSidebar();
   });
 }
 
-// ── SIDEBAR ──
-function renderSidebar(users){
-  document.getElementById('online-cnt').textContent=users.length;
+// ── SIDEBAR (shows real users + bots) ──
+function renderSidebar(filter=null){
+  const realUsers = filter || Object.values(onlineUsers);
+  const q=document.getElementById('sb-q').value.toLowerCase();
+  const fc=document.getElementById('sb-ct').value;
+  const fg=document.getElementById('sb-gn').value;
+
+  // Filter real users
+  const filtered = realUsers.filter(u=>{
+    if(q&&!u.name.toLowerCase().includes(q)&&!u.city.toLowerCase().includes(q)) return false;
+    if(fc&&u.country!==fc) return false;
+    if(fg&&u.gender!==fg) return false;
+    return true;
+  });
+
+  // Filter bots
+  const bots = BOTS.filter(b=>{
+    if(q&&!b.name.toLowerCase().includes(q)&&!b.city.toLowerCase().includes(q)) return false;
+    if(fc&&b.country!==fc) return false;
+    if(fg&&b.gender!==fg) return false;
+    return true;
+  });
+
+  const total = filtered.length + bots.length;
+  document.getElementById('online-cnt').textContent = total;
   const el=document.getElementById('ulist');
-  if(!users.length){ el.innerHTML='<div style="text-align:center;padding:32px 12px;color:var(--muted);font-size:.8rem;">No one else online yet.<br><br>Share the link to invite friends! 🔗</div>'; return; }
+  if(!total){ el.innerHTML='<div style="text-align:center;padding:32px 12px;color:var(--muted);font-size:.8rem;">No one found.<br>Try different filters.</div>'; return; }
+
   el.innerHTML='';
-  users.forEach(u=>{
+
+  // Real users first
+  filtered.forEach(u=>{
     const col=colorFor(u.uid), unread=unreadCounts[u.uid]||0;
     const d=document.createElement('div');
     d.className='uitem'+(activeUID===u.uid?' on':'');
@@ -603,45 +816,63 @@ function renderSidebar(users){
     d.onclick=()=>openChat(u);
     el.appendChild(d);
   });
-}
-window.filterSB=()=>{
-  const q=document.getElementById('sb-q').value.toLowerCase();
-  const fc=document.getElementById('sb-ct').value, fg=document.getElementById('sb-gn').value;
-  renderSidebar(Object.values(onlineUsers).filter(u=>{
-    if(q&&!u.name.toLowerCase().includes(q)&&!u.city.toLowerCase().includes(q)) return false;
-    if(fc&&u.country!==fc) return false;
-    if(fg&&u.gender!==fg) return false;
-    return true;
-  }));
-};
 
-// ── CHAT ──
+  // Divider if both exist
+  if(filtered.length && bots.length){
+    const div=document.createElement('div');
+    div.style.cssText='font-size:.68rem;color:var(--muted);padding:8px 10px 4px;font-weight:600;letter-spacing:.4px;text-transform:uppercase;';
+    div.textContent='🤖 Chatbots';
+    el.appendChild(div);
+  }
+
+  // Bots
+  bots.forEach(b=>{
+    const unread=unreadCounts[b.uid]||0;
+    const d=document.createElement('div');
+    d.className='uitem'+(activeUID===b.uid?' on':'');
+    d.innerHTML=`<div class="uav" style="background:${b.color}22;color:${b.color}">${b.name[0].toUpperCase()}<span class="bot-badge">🤖</span></div><div class="uinfo"><div class="uname">${esc(b.name)}<span class="bot-tag">BOT</span></div><div class="umeta">${flag(b.country)} ${esc(b.city)} · Always online</div></div>${unread?`<div class="unread-pill">${unread}</div>`:''}`;
+    d.onclick=()=>openBotChat(b);
+    el.appendChild(d);
+  });
+}
+
+window.filterSB=()=>renderSidebar();
+
+// ── REAL USER CHAT ──
 function openChat(user){
-  activeUID=user.uid; unreadCounts[user.uid]=0;
-  document.getElementById('no-chat').style.display='none';
-  const cp=document.getElementById('chat-panel'); cp.style.display='flex';
-  const col=colorFor(user.uid);
-  const av=document.getElementById('cp-av');
-  av.textContent=user.name[0].toUpperCase();
-  av.style.cssText=`background:${col}22;color:${col};width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.82rem;font-weight:700;flex-shrink:0;`;
-  document.getElementById('cp-nm').textContent=user.name;
-  document.getElementById('cp-meta').innerHTML=`${flag(user.country)} ${esc(user.city)}, ${esc(user.state)} &bull; ${user.gender==='male'?'👨':'👩'} ${user.age}`;
+  activeBotUID=null; activeUID=user.uid; unreadCounts[user.uid]=0;
+  showChatPanel(user.name, user.uid, user.color,
+    `${flag(user.country)} ${esc(user.city)}, ${esc(user.state)} &bull; ${user.gender==='male'?'👨':'👩'} ${user.age}`,
+    false);
+  document.getElementById('msgs').innerHTML='<div class="sys-msg"><span>Conversation start 👋</span></div>';
   loadMessages(user.uid);
-  renderSidebar(Object.values(onlineUsers));
+  renderSidebar();
   sv('chat',document.getElementById('tab-chat'));
 }
 
-// FIX 1: Back button — returns to welcome screen
+function showChatPanel(name, uid, color, meta, isBot){
+  document.getElementById('no-chat').style.display='none';
+  const cp=document.getElementById('chat-panel'); cp.style.display='flex';
+  const av=document.getElementById('cp-av');
+  av.textContent=name[0].toUpperCase();
+  av.style.cssText=`background:${color}22;color:${color};width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.82rem;font-weight:700;flex-shrink:0;`;
+  document.getElementById('cp-nm').innerHTML=esc(name)+(isBot?' <span class="bot-tag">BOT</span>':'');
+  document.getElementById('cp-meta').innerHTML=meta;
+  document.getElementById('typing-indicator').style.display='none';
+}
+
 window.closeChat=()=>{
-  activeUID=null;
+  activeUID=null; activeBotUID=null;
+  if(botTypingTimeout){ clearTimeout(botTypingTimeout); botTypingTimeout=null; }
+  document.getElementById('typing-indicator').style.display='none';
   document.getElementById('chat-panel').style.display='none';
   document.getElementById('no-chat').style.display='flex';
   document.getElementById('msgs').innerHTML='';
-  renderSidebar(Object.values(onlineUsers));
+  renderSidebar();
 };
 
 function chatKey(a,b){ return [a,b].sort().join('__'); }
-let msgCounts={};
+let msgPrev={};
 
 function loadMessages(uid){
   const key=chatKey(ME.uid,uid);
@@ -654,8 +885,7 @@ function loadMessages(uid){
     el.innerHTML='<div class="sys-msg"><span>Conversation start 👋</span></div>';
     let count=0;
     snap.forEach(c=>{ appendMsg(c.val(),el,false); count++; });
-    // FIX 2: Sound + popup notification for new messages
-    if(!first && count>prev){
+    if(!first&&count>prev){
       const all=snap.val();
       if(all){
         const last=all[Object.keys(all).pop()];
@@ -663,7 +893,7 @@ function loadMessages(uid){
           playTing();
           if(activeUID!==uid){
             unreadCounts[uid]=(unreadCounts[uid]||0)+1;
-            renderSidebar(Object.values(onlineUsers));
+            renderSidebar();
             const sender=onlineUsers[uid];
             if(sender) showNotif(sender.name,sender.uid,last.text,()=>openChat(sender));
           }
@@ -674,6 +904,71 @@ function loadMessages(uid){
     el.scrollTop=el.scrollHeight;
   });
 }
+
+// ── BOT CHAT ──
+function openBotChat(bot){
+  activeBotUID=bot.uid; activeUID=null; unreadCounts[bot.uid]=0;
+  showChatPanel(bot.name, bot.uid, bot.color,
+    `${flag(bot.country)} ${esc(bot.city)}, ${esc(bot.state)} &bull; ${bot.gender==='male'?'👨':'👩'} ${bot.age} &bull; Always online`,
+    true);
+  // Load existing bot conversation
+  const el=document.getElementById('msgs');
+  el.innerHTML='<div class="sys-msg"><span>Chat started with '+esc(bot.name)+' 👋</span></div>';
+  (botConversations[bot.uid]||[]).forEach(m=>appendMsg(m,el,false));
+  el.scrollTop=el.scrollHeight;
+  // Bot sends a greeting after 1.2s if fresh chat
+  if(!(botConversations[bot.uid]||[]).length){
+    scheduleBotReply(bot, null, true);
+  }
+  renderSidebar();
+  sv('chat',document.getElementById('tab-chat'));
+}
+
+function scheduleBotReply(bot, userMsg, isGreeting=false){
+  if(botTypingTimeout) clearTimeout(botTypingTimeout);
+  // Show typing indicator
+  const ti=document.getElementById('typing-indicator');
+  const tn=document.getElementById('typing-name');
+  ti.style.display='flex'; tn.textContent=bot.name;
+
+  // Realistic delay: shorter for greetings, longer for real replies
+  const delay = isGreeting ? randInt(1200,2200) : randInt(1500,3500);
+
+  botTypingTimeout=setTimeout(()=>{
+    if(activeBotUID!==bot.uid) return; // user left
+    ti.style.display='none';
+    const text = isGreeting
+      ? getBotReply(bot, 'hi')
+      : getBotReply(bot, userMsg||'');
+    const m={from:bot.uid, senderName:bot.name, text, time:ftime(), isBot:true};
+    if(!botConversations[bot.uid]) botConversations[bot.uid]=[];
+    botConversations[bot.uid].push(m);
+    const el=document.getElementById('msgs');
+    appendMsg(m, el, true);
+    playTing();
+  }, delay);
+}
+
+// ── SEND MESSAGE (real user or bot) ──
+window.sendMsg=async()=>{
+  const inp=document.getElementById('minp'), text=inp.value.trim();
+  if(!text) return; inp.value='';
+
+  if(activeBotUID){
+    // Send to bot (local only)
+    const bot=BOTS.find(b=>b.uid===activeBotUID);
+    if(!bot) return;
+    const m={from:ME.uid, senderName:ME.name, text, time:ftime()};
+    if(!botConversations[bot.uid]) botConversations[bot.uid]=[];
+    botConversations[bot.uid].push(m);
+    const el=document.getElementById('msgs');
+    appendMsg(m, el, true);
+    scheduleBotReply(bot, text);
+  } else if(activeUID){
+    // Send to real user via Firebase
+    await push(ref(db,'chats/'+chatKey(ME.uid,activeUID)),{from:ME.uid,senderName:ME.name,text,time:ftime(),ts:serverTimestamp()});
+  }
+};
 
 function appendMsg(m, container, scroll=true){
   const el=container||document.getElementById('msgs');
@@ -687,16 +982,9 @@ function appendMsg(m, container, scroll=true){
   if(scroll) el.scrollTop=el.scrollHeight;
 }
 
-window.sendMsg=async()=>{
-  const inp=document.getElementById('minp'), text=inp.value.trim();
-  if(!text||!activeUID) return; inp.value='';
-  await push(ref(db,'chats/'+chatKey(ME.uid,activeUID)),{from:ME.uid,senderName:ME.name,text,time:ftime(),ts:serverTimestamp()});
-};
-
-// FIX 2: copy last message
-window.copyLast=(msgsId)=>{
-  const mbs=document.getElementById(msgsId)?.querySelectorAll('.mb');
-  if(mbs&&mbs.length){ navigator.clipboard.writeText(mbs[mbs.length-1].textContent).then(()=>toast('📋 Copied!')); }
+window.copyLast=(id)=>{
+  const mbs=document.getElementById(id)?.querySelectorAll('.mb');
+  if(mbs&&mbs.length) navigator.clipboard.writeText(mbs[mbs.length-1].textContent).then(()=>toast('📋 Copied!'));
   else toast('No message to copy');
 };
 
@@ -704,22 +992,36 @@ window.copyLast=(msgsId)=>{
 window.doSearch=()=>{
   const ct=document.getElementById('s-ct').value, st=document.getElementById('s-st').value;
   const ci=document.getElementById('s-ci').value, gn=document.getElementById('s-gn').value;
-  const res=Object.values(onlineUsers).filter(u=>{
+  const realRes=Object.values(onlineUsers).filter(u=>{
     if(ct&&u.country!==ct) return false;
     if(st&&u.state!==st) return false;
     if(ci&&u.city!==ci) return false;
     if(gn&&u.gender!==gn) return false;
     return true;
   });
+  const botRes=BOTS.filter(b=>{
+    if(ct&&b.country!==ct) return false;
+    if(st&&b.state!==st) return false;
+    if(ci&&b.city!==ci) return false;
+    if(gn&&b.gender!==gn) return false;
+    return true;
+  });
+  const res=[...realRes,...botRes];
   const el=document.getElementById('sres');
-  if(!res.length){ el.innerHTML='<div style="text-align:center;padding:32px;color:var(--muted);"><div style="font-size:2rem;margin-bottom:8px">🔍</div><p style="font-size:.83rem">No online users match this filter.<br>Try broadening your search.</p></div>'; return; }
-  el.innerHTML=`<p style="font-size:.78rem;color:var(--muted);margin-bottom:10px">Found <strong style="color:var(--accent)">${res.length}</strong> user${res.length!==1?'s':''} online</p><div class="rg">`+
-  res.map(u=>`<div class="rc" onclick="openChatFS('${u.uid}')"><div class="bav" style="background:${colorFor(u.uid)}22;color:${colorFor(u.uid)};position:relative;">${u.name[0]}<span style="position:absolute;bottom:2px;right:2px;width:9px;height:9px;border-radius:50%;background:var(--green);border:2px solid var(--s1)"></span></div><h4>${esc(u.name)}</h4><div class="rm">${flag(u.country)} ${esc(u.city)}, ${esc(u.state)}</div><div class="rm">${u.gender==='male'?'👨':'👩'} ${u.age}</div><span class="tag ${TAGS[u.country]||'t-in'}">${u.country}</span><span class="rl">💬 Start Chat</span></div>`).join('')+'</div>';
+  if(!res.length){ el.innerHTML='<div style="text-align:center;padding:32px;color:var(--muted);"><div style="font-size:2rem;margin-bottom:8px">🔍</div><p style="font-size:.83rem">No users match this filter.</p></div>'; return; }
+  el.innerHTML=`<p style="font-size:.78rem;color:var(--muted);margin-bottom:10px">Found <strong style="color:var(--accent)">${res.length}</strong> user${res.length!==1?'s':''}</p><div class="rg">`+
+  res.map(u=>{
+    const isB=!!u.isBot;
+    const col=colorFor(u.uid);
+    const onclick=isB?`openBotChatFS('${u.uid}')`:`openChatFS('${u.uid}')`;
+    return `<div class="rc" onclick="${onclick}"><div class="bav" style="background:${col}22;color:${col};position:relative;">${u.name[0]}<span style="position:absolute;bottom:2px;right:2px;width:9px;height:9px;border-radius:50%;background:${isB?'var(--purple)':'var(--green)'};border:2px solid var(--s1)"></span></div><h4>${esc(u.name)}${isB?' <span class="bot-tag">BOT</span>':''}</h4><div class="rm">${flag(u.country)} ${esc(u.city)}, ${esc(u.state)}</div><div class="rm">${u.gender==='male'?'👨':'👩'} ${u.age}</div><span class="tag ${TAGS[u.country]||'t-in'}">${u.country}</span><span class="rl">💬 Start Chat</span></div>`;
+  }).join('')+'</div>';
 };
 window.openChatFS=(uid)=>{ const u=onlineUsers[uid]; if(u) openChat(u); };
+window.openBotChatFS=(uid)=>{ const b=BOTS.find(x=>x.uid===uid); if(b) openBotChat(b); };
 window.clrSearch=()=>{ ['s-ct','s-st','s-ci','s-gn'].forEach(id=>{ const e=document.getElementById(id); if(e) e.value=''; }); document.getElementById('sres').innerHTML=''; };
 
-// ── GROUPS (FIX 3) ──
+// ── GROUPS ──
 function renderGroups(){
   document.getElementById('glist').innerHTML=localGroups.map(g=>`
     <div class="gcard">
@@ -737,14 +1039,13 @@ function renderGroups(){
   `).join('');
 }
 
-window.joinGrp=(id,btn)=>{
+window.joinGrp=(id)=>{
   const g=localGroups.find(x=>x.id===id); if(!g) return;
   g.members++; g.joined=true;
-  toast(`✅ Joined "${g.name}"! Click "Enter Chat" to start.`,'var(--green)');
+  toast(`✅ Joined "${g.name}"! Click "Enter Chat".`,'var(--green)');
   renderGroups();
 };
 
-// FIX 3: Enter group chat
 window.enterGroup=(id)=>{
   const g=localGroups.find(x=>x.id===id); if(!g) return;
   activeGID=id;
@@ -756,10 +1057,9 @@ window.enterGroup=(id)=>{
   loadGroupChat(id,g);
 };
 
-// FIX 3 back: return to group list
 window.closeGroupChat=()=>{
   activeGID=null;
-  if(groupListener){ off(ref(db,'groupchats/x'),'value',groupListener); groupListener=null; }
+  if(groupListener){ try{ off(ref(db,'groupchats/'+activeGID),'value',groupListener); }catch(e){} groupListener=null; }
   document.getElementById('gchat-screen').classList.remove('on');
   document.getElementById('gv-list-screen').style.display='';
   document.getElementById('gmsgs').innerHTML='';
@@ -769,14 +1069,13 @@ function loadGroupChat(gid,g){
   const el=document.getElementById('gmsgs');
   el.innerHTML=`<div class="sys-msg"><span>Welcome to ${esc(g.name)} 🎉</span></div>`;
   const gRef=ref(db,'groupchats/'+gid);
-  if(groupListener) off(gRef,'value',groupListener);
+  if(groupListener) try{ off(gRef,'value',groupListener); }catch(e){}
   let first=true, prev=0;
   groupListener=onValue(gRef,snap=>{
     el.innerHTML=`<div class="sys-msg"><span>Welcome to ${esc(g.name)} 🎉</span></div>`;
     let count=0; const members=new Set([ME.name]);
     snap.forEach(c=>{ const m=c.val(); appendMsg(m,el,false); members.add(m.senderName); count++; });
     document.getElementById('gmem-bar').textContent=`👥 ${members.size} member${members.size!==1?'s':''} active: ${[...members].join(', ')}`;
-    // FIX 2: Group notifications
     if(!first&&count>prev){
       const all=snap.val();
       if(all){
@@ -810,7 +1109,7 @@ window.createGroup=()=>{
   localGroups.unshift({id:'g'+Date.now(),name:nm,country:ct,state:st,city:ci,tag:tg,icon:ic,members:1,joined:true});
   renderGroups();
   document.getElementById('g-nm').value=''; document.getElementById('g-tg').value='';
-  toast(`🎉 "${nm}" created! Click "Enter Chat" to start.`,'var(--green)');
+  toast(`🎉 "${nm}" created!`,'var(--green)');
 };
 
 // ── VIEW SWITCHER ──
